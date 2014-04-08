@@ -27,3 +27,13 @@ Extra Advanced: +25
 	1. mobile interface
 	2. shows timeline in an innovative way to see the twit trends
 	3. dynamic keyword dictionary from the analysis of twit contents
+
+===============================
+development reference
+
+Twitter API links:
+For collecting tweets without query: GET statuses/sample
+https://dev.twitter.com/docs/api/1.1/get/statuses/sample
+
+For collecting tweets with given query: GET search/tweets
+https://dev.twitter.com/docs/api/1.1/get/search/tweets
