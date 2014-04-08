@@ -1,8 +1,5 @@
-Cloud-Proj2
+Cloud-Proj2 : TwittMap
 ===========
-
-Cloud Computing Project2: TwittMap
-
 
 Instructions
 Assignment 2: TwittMap
