@@ -37,3 +37,6 @@ https://dev.twitter.com/docs/api/1.1/get/statuses/sample
 
 For collecting tweets with given query: GET search/tweets
 https://dev.twitter.com/docs/api/1.1/get/search/tweets
+
+Twitter Python API:
+https://github.com/sixohsix/twitter

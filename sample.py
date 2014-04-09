@@ -23,8 +23,8 @@ twitter_stream = TwitterStream(auth=auth)
 iterator = twitter_stream.statuses.sample()
 
 for tweet in iterator:
+	print tweet
     # ...do something with this tweet...
-
 
 # Search for the latest tweets about query, #tag
 # t.search.tweets(q="#pycon")
