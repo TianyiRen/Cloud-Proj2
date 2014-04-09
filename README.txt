@@ -1,1 +1,0 @@
-http://xc2263guestbook.appspot.com/
