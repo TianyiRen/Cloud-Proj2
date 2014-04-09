@@ -1,17 +1,10 @@
 import sys, time
-import ConfigParser
 import json
+
 from twitter import *
 
-config = ConfigParser.RawConfigParser()
-config.read('keys.cfg')
+from auth import auth
 
-CONSUMER_KEY = config.get('OAuth', 'API key')
-CONSUMER_SECRET = config.get('OAuth', 'API secret')
-OAUTH_TOKEN = config.get('OAuth', 'Access token')
-OAUTH_TOKEN_SECRET = config.get('OAuth', 'Access token secret')
-
-auth = OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET, CONSUMER_KEY, CONSUMER_SECRET)
 
 # auth = OAuth(
 #     token='1673455951-jdJJJEtQJl4tCJEu0SvlWWv6XMEQ8BmEypFdUBH',
@@ -32,7 +25,7 @@ while True:
 		with open("twitter-data.txt", "a") as tweet_data:
 			for tweet in tweet_iter:
 				if tweet and 'lang' in tweet and tweet['lang'] == 'en':
-					tweet_data.write(json.dumps(tweet))
+					tweet_data.write(json.dumps(tweet) + "\n")
 				time.sleep(3)
 	except Exception, e:
 		print >> sys.stderr, e
