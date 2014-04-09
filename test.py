@@ -1,4 +1,4 @@
-import time
+import sys, time
 import ConfigParser
 import json
 from twitter import *
@@ -26,10 +26,14 @@ stream = TwitterStream(auth = auth)
 authorlist = [line.strip() for line in open("authorlist.txt")]
 # print authorlist
 
-tweet_iter = stream.statuses.filter(**{'track': ','.join(authorlist)})
-
-with open("twitter-data.txt", "a") as tweet_data:
-	for tweet in tweet_iter:
-		if tweet['lang'] == 'en':
-			tweet_data.write(json.dumps(tweet))
-		time.sleep(3)
+while True:
+	try:
+		tweet_iter = stream.statuses.filter(**{'track': ','.join(authorlist)})
+		with open("twitter-data.txt", "a") as tweet_data:
+			for tweet in tweet_iter:
+				if tweet and 'lang' in tweet and tweet['lang'] == 'en':
+					tweet_data.write(json.dumps(tweet))
+				time.sleep(3)
+	except Exception, e:
+		print >> sys.stderr, e
+		continue
