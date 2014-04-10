@@ -2,10 +2,11 @@
 {% autoescape true %}
 <html>
   <head>
-    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+    <!-- <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" /> -->
   </head>
   <body>
-    {% for greeting in greetings %}
+    <p> welcome to TwittMap ! </p>
+   <!--  {% for greeting in greetings %}
       {% if greeting.author %}
         <b>{{ greeting.author.nickname() }}</b> wrote:
       {% else %}
@@ -27,7 +28,7 @@
     </form>
 
     <a href="{{ url|safe }}">{{ url_linktext }}</a>
-
+ -->
   </body>
 </html>
 {% endautoescape %}
