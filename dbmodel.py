@@ -1,18 +1,18 @@
-from google.appengine.ext import db
+from google.appengine.ext import ndb
 
-class Twiteet(db.model):
-	twiteetid = db.StringProperty()
-	longitude = db.FloatProperty()
-	latitude = db.FloatProperty()
-	created_at = db.DateProperty()
-	favorite_count = db.IntegerProperty()
-	retweet_count = db.IntegerProperty()
-	text = db.StringProperty()
-	twitterid = db.StringProperty()
+class Twiteet(ndb.Model):
+	twiteetid = ndb.StringProperty()
+	longitude = ndb.FloatProperty()
+	latitude = ndb.FloatProperty()
+	created_at = ndb.DateProperty()
+	favorite_count = ndb.IntegerProperty()
+	retweet_count = ndb.IntegerProperty()
+	text = ndb.StringProperty()
+	twitterid = ndb.StringProperty()
 
-class TwitterUser(db.model):
-	twitterid = db.StringProperty()
-	verified = db.BooleanProperty()
-	followers_count = db.IntegerProperty()
-	screen_name = db.StringProperty()
-	name = db.StringProperty()
+class TwitterUser(ndb.Model):
+	twitterid = ndb.StringProperty()
+	verified = ndb.BooleanProperty()
+	followers_count = ndb.IntegerProperty()
+	screen_name = ndb.StringProperty()
+	name = ndb.StringProperty()

@@ -7,8 +7,8 @@ threadsafe: true
 handlers:
 - url: /stylesheets
   static_dir: stylesheets
-- url: /report/weekly
-  script: reports.app
+- url: /gaedatastore
+  script: gaedatastore.app
   login: admin
 - url: /.*
   script: twittermap.application
@@ -17,4 +17,6 @@ libraries:
 - name: webapp2
   version: latest
 - name: jinja2
+  version: latest
+- name: ssl
   version: latest
