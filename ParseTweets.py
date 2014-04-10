@@ -6,7 +6,7 @@ from twitter import *
 
 from auth import auth
 
-# parse the tweets and store in data store
+# parse the tweets and store in datastore
 # get
 # 1. location
 # 2. set of key words from content of tweets 
