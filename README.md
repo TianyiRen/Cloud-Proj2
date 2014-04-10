@@ -40,3 +40,8 @@ https://dev.twitter.com/docs/api/1.1/get/search/tweets
 
 Twitter Python API:
 https://github.com/sixohsix/twitter
+
+GAE Application info:
+Application ID:	twittmap-xhcyfz
+
+access port: 9080
