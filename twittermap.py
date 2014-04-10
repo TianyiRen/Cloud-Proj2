@@ -47,6 +47,8 @@ class MainPage(webapp2.RequestHandler):
         #     url = users.create_login_url(self.request.uri)
         #     url_linktext = 'Login'
 
+        # collect 100M tweets
+        
         template_values = {
             
         }
