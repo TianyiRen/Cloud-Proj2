@@ -1,0 +1,24 @@
+[INFO     2014-04-10 23:58:39,434 bulkloader.py] Logging to bulkloader-log-20140410.235839
+[INFO     2014-04-10 23:58:39,434 bulkloader.py] Throttling transfers:
+[INFO     2014-04-10 23:58:39,434 bulkloader.py] Bandwidth: 250000 bytes/second
+[INFO     2014-04-10 23:58:39,435 bulkloader.py] HTTP connections: 8/second
+[INFO     2014-04-10 23:58:39,435 bulkloader.py] Entities inserted/fetched/modified: 20/second
+[INFO     2014-04-10 23:58:39,435 bulkloader.py] Batch Size: 10
+[INFO     2014-04-10 23:58:58,421 bulkloader.py] Opening database: bulkloader-progress-20140410.235839.sql3
+[INFO     2014-04-10 23:58:58,489 bulkloader.py] Opening database: bulkloader-results-20140410.235839.sql3
+[DEBUG    2014-04-10 23:58:58,501 adaptive_thread_pool.py] [WorkerThread-0] WorkerThread: started
+[DEBUG    2014-04-10 23:58:58,501 adaptive_thread_pool.py] [WorkerThread-1] WorkerThread: started
+[DEBUG    2014-04-10 23:58:58,502 adaptive_thread_pool.py] [WorkerThread-2] WorkerThread: started
+[DEBUG    2014-04-10 23:58:58,502 adaptive_thread_pool.py] [WorkerThread-3] WorkerThread: started
+[DEBUG    2014-04-10 23:58:58,502 adaptive_thread_pool.py] [WorkerThread-4] WorkerThread: started
+[DEBUG    2014-04-10 23:58:58,503 adaptive_thread_pool.py] [WorkerThread-5] WorkerThread: started
+[DEBUG    2014-04-10 23:58:58,503 adaptive_thread_pool.py] [WorkerThread-6] WorkerThread: started
+[DEBUG    2014-04-10 23:58:58,504 adaptive_thread_pool.py] [WorkerThread-7] WorkerThread: started
+[DEBUG    2014-04-10 23:58:58,504 adaptive_thread_pool.py] [WorkerThread-8] WorkerThread: started
+[DEBUG    2014-04-10 23:58:58,505 adaptive_thread_pool.py] [WorkerThread-9] WorkerThread: started
+[DEBUG    2014-04-10 23:58:58,505 bulkloader.py] Configuring remote_api. url_path = /_ah/remote_api, servername = twittmap-xhcyfz.appspot.com
+[DEBUG    2014-04-10 23:58:58,505 bulkloader.py] Bulkloader using app_id: s~twittmap-xhcyfz
+[INFO     2014-04-10 23:58:58,505 bulkloader.py] Connecting to twittmap-xhcyfz.appspot.com/_ah/remote_api
+[ERROR    2014-04-10 23:58:58,770 bulkloader.py] Unable to download kind stats for all-kinds download.
+[ERROR    2014-04-10 23:58:58,770 bulkloader.py] Kind stats are generated periodically by the appserver
+[ERROR    2014-04-10 23:58:58,770 bulkloader.py] Kind stats are not available on dev_appserver.

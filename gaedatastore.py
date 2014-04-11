@@ -58,11 +58,30 @@ class DataStore(webapp2.RequestHandler):
 	def get(self):
 		logging.info("DataStore get called")
 		authorlist = [line.strip() for line in open("authorlist.txt")]
-		
-		l = StdOutListener()
-		stream = Stream(auth, l)
-		stream.filter(track = authorlist)
-		stream = TwitterStream(auth = auth)
+
+		# l = StdOutListener()
+		# stream = Stream(auth, l)
+		# stream.filter(track = authorlist)
+		# stream = TwitterStream(auth = auth)
+		with open("sampletweet.txt") as f:
+			tweet = json.loads(f.read())
+			# print 'tweet[id]', tweet['id']
+			# print '1', tweet['coordinates']['coordinates'][0] if 'coordinates' in tweet and tweet['coordinates'] and 'coordinates' in tweet['coordinates'] and tweet['coordinates']['coordinates'] else ''
+			# print '2', tweet['coordinates']['coordinates'][1] if 'coordinates' in tweet and tweet['coordinates'] and 'coordinates' in tweet['coordinates'] and tweet['coordinates']['coordinates'] else '' 
+			# print '3', twitter_time_to_datetime(tweet['created_at']) if 'created_at' in tweet and tweet['created_at'] else None
+			# print '4', tweet['favorite_count'] if 'favorite_count' in tweet else 0
+			# print '5', tweet['retweet_count'] if 'retweet_count' in tweet else 0
+			# print '6', 'text' if 'text' in tweet else ''
+			# print '7', tweet['user']['id_str'] if 'user' in tweet and 'id_str' in tweet['user'] else None
+			
+			Twiteet(twiteetid = tweet['id_str'],
+				longitude = tweet['coordinates']['coordinates'][0] if 'coordinates' in tweet and tweet['coordinates'] and 'coordinates' in tweet['coordinates'] and tweet['coordinates']['coordinates'] else '', 
+				latitude = tweet['coordinates']['coordinates'][1] if 'coordinates' in tweet and tweet['coordinates'] and 'coordinates' in tweet['coordinates'] and tweet['coordinates']['coordinates'] else '', 
+				created_at = twitter_time_to_datetime(tweet['created_at']) if 'created_at' in tweet and tweet['created_at'] else None,
+				favorite_count = tweet['favorite_count'] if 'favorite_count' in tweet else 0,
+				retweet_count = tweet['retweet_count'] if 'retweet_count' in tweet else 0, 
+				text = tweet['text'] if 'text' in tweet else '',
+				twitter_userid = tweet['user']['id_str'] if 'user' in tweet and 'id_str' in tweet['user'] else None).put()
 
 		# print authorlist
 
