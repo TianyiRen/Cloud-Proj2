@@ -25,19 +25,20 @@ class StdOutListener(StreamListener):
 	This is a basic listener that just prints received tweets to stdout.
 
 	"""
-	def on_data(self, tweet):
+	def on_data(self, data):
+		tweet = json.loads(data)
 		logging.info("tweet comes!!")
 		if not tweet or 'delete' in tweet or 'limit' in tweet or 'warning' in tweet:
 			print >> sys.stderr, tweet
 		elif 'lang' in tweet and tweet['lang'] == 'en':
-			Twiteet(tweet['id'], 
-				tweet['coordinates']['coordinates'][0] if 'coordinates' in tweet and tweet['coordinates'] and 'coordinates' in tweet['coordinates'] and tweet['coordinates']['coordinates'] else '', 
-				tweet['coordinates']['coordinates'][1] if 'coordinates' in tweet and tweet['coordinates'] and 'coordinates' in tweet['coordinates'] and tweet['coordinates']['coordinates'] else '', 
-				twitter_time_to_datetime(tweet['created_at']) if 'created_at' in tweet and tweet['created_at'] else None,
-				tweet['favorite_count'] if 'favorite_count' in tweet else 0,
-				tweet['retweet_count'] if 'retweet_count' in tweet else 0, 
-				tweet['text'] if 'text' in tweet else '',
-				tweet['user']['id_str'] if 'user' in tweet and 'id_str' in tweet['user'] else None).put()
+			Twiteet(twiteetid = tweet['id_str'], 
+				longitude = tweet['coordinates']['coordinates'][0] if 'coordinates' in tweet and tweet['coordinates'] and 'coordinates' in tweet['coordinates'] and tweet['coordinates']['coordinates'] else '', 
+				latitude = tweet['coordinates']['coordinates'][1] if 'coordinates' in tweet and tweet['coordinates'] and 'coordinates' in tweet['coordinates'] and tweet['coordinates']['coordinates'] else '', 
+				created_at = twitter_time_to_datetime(tweet['created_at']) if 'created_at' in tweet and tweet['created_at'] else None,
+				favorite_count = tweet['favorite_count'] if 'favorite_count' in tweet else 0,
+				retweet_count = tweet['retweet_count'] if 'retweet_count' in tweet else 0, 
+				text = tweet['text'] if 'text' in tweet else '',
+				twitter_userid = tweet['user']['id_str'] if 'user' in tweet and 'id_str' in tweet['user'] else None).put()
 			logging.info("tweet stored!!")
 		else:
 			# other language, ignore
@@ -59,10 +60,10 @@ class DataStore(webapp2.RequestHandler):
 		logging.info("DataStore get called")
 		authorlist = [line.strip() for line in open("authorlist.txt")]
 
-		# l = StdOutListener()
-		# stream = Stream(auth, l)
-		# stream.filter(track = authorlist)
-		# stream = TwitterStream(auth = auth)
+		l = StdOutListener()
+		stream = Stream(auth, l)
+		stream.filter(track = authorlist)
+		stream = TwitterStream(auth = auth)
 		with open("sampletweet.txt") as f:
 			tweet = json.loads(f.read())
 			# print 'tweet[id]', tweet['id']
@@ -74,14 +75,14 @@ class DataStore(webapp2.RequestHandler):
 			# print '6', 'text' if 'text' in tweet else ''
 			# print '7', tweet['user']['id_str'] if 'user' in tweet and 'id_str' in tweet['user'] else None
 			
-			Twiteet(twiteetid = tweet['id_str'],
-				longitude = tweet['coordinates']['coordinates'][0] if 'coordinates' in tweet and tweet['coordinates'] and 'coordinates' in tweet['coordinates'] and tweet['coordinates']['coordinates'] else '', 
-				latitude = tweet['coordinates']['coordinates'][1] if 'coordinates' in tweet and tweet['coordinates'] and 'coordinates' in tweet['coordinates'] and tweet['coordinates']['coordinates'] else '', 
-				created_at = twitter_time_to_datetime(tweet['created_at']) if 'created_at' in tweet and tweet['created_at'] else None,
-				favorite_count = tweet['favorite_count'] if 'favorite_count' in tweet else 0,
-				retweet_count = tweet['retweet_count'] if 'retweet_count' in tweet else 0, 
-				text = tweet['text'] if 'text' in tweet else '',
-				twitter_userid = tweet['user']['id_str'] if 'user' in tweet and 'id_str' in tweet['user'] else None).put()
+			# Twiteet(twiteetid = tweet['id_str'], 
+			# 	longitude = tweet['coordinates']['coordinates'][0] if 'coordinates' in tweet and tweet['coordinates'] and 'coordinates' in tweet['coordinates'] and tweet['coordinates']['coordinates'] else '', 
+			# 	latitude = tweet['coordinates']['coordinates'][1] if 'coordinates' in tweet and tweet['coordinates'] and 'coordinates' in tweet['coordinates'] and tweet['coordinates']['coordinates'] else '', 
+			# 	created_at = twitter_time_to_datetime(tweet['created_at']) if 'created_at' in tweet and tweet['created_at'] else None,
+			# 	favorite_count = tweet['favorite_count'] if 'favorite_count' in tweet else 0,
+			# 	retweet_count = tweet['retweet_count'] if 'retweet_count' in tweet else 0, 
+			# 	text = tweet['text'] if 'text' in tweet else '',
+			# 	twitter_userid = tweet['user']['id_str'] if 'user' in tweet and 'id_str' in tweet['user'] else None).put()
 
 		# print authorlist
 

@@ -1,13 +1,6 @@
 import os, sys, time, json, logging
 
-from dbmodel import Twiteet, TwitterUser
-import jinja2
-import webapp2
-
 from datetime import datetime
-
-from google.appengine.api import taskqueue
-from google.appengine.ext import ndb
 
 from tweepy.streaming import StreamListener
 from tweepy import Stream
@@ -25,26 +18,35 @@ class StdOutListener(StreamListener):
 	This is a basic listener that just prints received tweets to stdout.
 
 	"""
-	def on_data(self, tweet):
+	def on_data(self, data):
+		logging.info("tweet comes!!")
+		tweet = json.loads(data)
+		print tweet
+		print type(tweet)
 		if not tweet or 'delete' in tweet or 'limit' in tweet or 'warning' in tweet:
 			print >> sys.stderr, tweet
 		elif 'lang' in tweet and tweet['lang'] == 'en':
-			Twiteet(tweet['id'], 
-				tweet['coordinates']['coordinates'][0] if 'coordinates' in tweet and tweet['coordinates'] and 'coordinates' in tweet['coordinates'] and tweet['coordinates']['coordinates'] else '', 
-				tweet['coordinates']['coordinates'][1] if 'coordinates' in tweet and tweet['coordinates'] and 'coordinates' in tweet['coordinates'] and tweet['coordinates']['coordinates'] else '', 
-				twitter_time_to_datetime(tweet['created_at']) if 'created_at' in tweet and tweet['created_at'] else None,
-				tweet['favorite_count'] if 'favorite_count' in tweet else 0,
-				tweet['retweet_count'] if 'retweet_count' in tweet else 0, 
-				tweet['text'] if 'text' in tweet else '',
-				tweet['user']['id_str'] if 'user' in tweet and 'id_str' in tweet['user'] else None).put()
+			print tweet
+			logging.info("tweet stored!!")
 		else:
 			# other language, ignore
 			pass
 
 	def on_timeout(self):
+		logging.info("Timeout, sleeping for 60 seconds...")
 		sys.stderr.write("Timeout, sleeping for 60 seconds...\n")
 		time.sleep(60)
 		return 
 
 	def on_error(self, status):
+		logging.info("on_error:" + status)
 		print >> sys.stderr, status
+
+if __name__ == "__main__":
+	logging.info("DataStore get called")
+	authorlist = [line.strip() for line in open("authorlist.txt")]
+
+	l = StdOutListener()
+	stream = Stream(auth, l)
+	stream.filter(track = authorlist)
+	stream = TwitterStream(auth = auth)
