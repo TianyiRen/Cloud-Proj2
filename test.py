@@ -26,7 +26,6 @@ class StdOutListener(StreamListener):
 
 	"""
 	def on_data(self, tweet):
-		logging.info("tweet comes!!")
 		if not tweet or 'delete' in tweet or 'limit' in tweet or 'warning' in tweet:
 			print >> sys.stderr, tweet
 		elif 'lang' in tweet and tweet['lang'] == 'en':
@@ -38,54 +37,14 @@ class StdOutListener(StreamListener):
 				tweet['retweet_count'] if 'retweet_count' in tweet else 0, 
 				tweet['text'] if 'text' in tweet else '',
 				tweet['user']['id_str'] if 'user' in tweet and 'id_str' in tweet['user'] else None).put()
-			logging.info("tweet stored!!")
 		else:
 			# other language, ignore
 			pass
 
 	def on_timeout(self):
-		logging.info("Timeout, sleeping for 60 seconds...")
 		sys.stderr.write("Timeout, sleeping for 60 seconds...\n")
 		time.sleep(60)
 		return 
 
 	def on_error(self, status):
-		logging.info("on_error:" + status)
 		print >> sys.stderr, status
-	
-class DataStore(webapp2.RequestHandler):
-
-	def get(self):
-		logging.info("DataStore get called")
-		authorlist = [line.strip() for line in open("authorlist.txt")]
-		
-		l = StdOutListener()
-		stream = Stream(auth, l)
-		stream.filter(track = authorlist)
-		stream = TwitterStream(auth = auth)
-
-		# print authorlist
-
-		# while True:
-		# 	logging.info("in the while loop")
-		# 	try:
-		# 		tweet_iter = stream.statuses.filter(**{'track': ','.join(authorlist)})
-		# 		with open("twitter-data.txt", "a") as tweet_data:
-		# 			for tweet in tweet_iter:
-		# 				if tweet and 'lang' in tweet and tweet['lang'] == 'en':
-		# 					tweet_data.write(json.dumps(tweet) + "\n")
-		# 				logging.info("one tweet has arrived!")
-		# 				print "here here"
-		# 				time.sleep(3)
-		# 		logging.info("outside of open")
-		# 	except Exception, e:
-		# 		logging.info("there is exception")
-		# 		print >> sys.stderr, e
-		# 		continue
-		# logging.info("out of the while loop")
-		self.response.write("DataStore get called")
-
-
-app = webapp2.WSGIApplication([
-	('/gaedatastore', DataStore)
-], debug=True)

@@ -2,6 +2,7 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
 
+from auth import auth
 # Go to http://dev.twitter.com and create an app.
 # The consumer key and secret will be generated for you after
 consumer_key=""
@@ -26,8 +27,8 @@ class StdOutListener(StreamListener):
 
 if __name__ == '__main__':
     l = StdOutListener()
-    auth = OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token, access_token_secret)
+    # auth = OAuthHandler(consumer_key, consumer_secret)
+    # auth.set_access_token(access_token, access_token_secret)
 
     stream = Stream(auth, l)
     stream.filter(track=['basketball'])

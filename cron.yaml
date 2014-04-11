@@ -1,5 +1,5 @@
 cron:
-# - description: store tweet into data store (always running)
-#   url: /gaedatastore
-#   # schedule: every 1 mins
-#   schedule: every monday 09:00
+- description: store tweet into data store (always running)
+  url: /gaedatastore
+  # schedule: every 1 mins
+  schedule: every monday 09:00
