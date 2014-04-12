@@ -4,8 +4,8 @@
   var fill = d3.scale.category20();
   var frequencies = new Object();
 
-  {% for word in words %}
-  frequencies[{{word}}] = {{frequencies[word]}};
+  {% for w in words %}
+  frequencies[{{w}}] = {{words[w]}};
   {% endfor %}
 
   d3.layout.cloud().size([500, 300])

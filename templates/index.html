@@ -49,22 +49,23 @@
 			<div class="row row-offcanvas row-offcanvas-left">
 
 				<div class="col-xs-2 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
-					<div class="list-group">
-						<a href="heatmap.html" class="list-group-item active">MarkersMap</a>
-						<a href="heatmap.html" class="list-group-item">HeatMap</a>
+					<div>
+						<div class="list-group">
+							<a href="heatmap.html" class="list-group-item active">MarkersMap</a>
+							<a href="heatmap.html" class="list-group-item">HeatMap</a>
+						</div>
+						<div height="200px" width="100%" frameBorder="0" scrolling="no">
+							{% include 'cloudbox.html' %}
+						</div>
 					</div>
-					<iframe height="200px" width="100%" frameBorder="0" scrolling="no">
-						{% include 'cloudbox.html' %}
-					</iframe>
-				</div><!--/span-->
 
 				<div class="col-xs-9 col-sm-10">
 					<p class="pull-right visible-xs">
 						<button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
 						<p>Welcome to TwittMap!</p>
-						<iframe height="600px" width="100%" frameBorder="0" scrolling="no">
-							{% include 'heatmap.html' %}
-						</iframe>
+						<!-- <iframe height="600px" width="100%" frameBorder="0" scrolling="no"> -->
+						{% include 'heatmap.html' %}
+						<!-- </iframe> -->
 					</p>
 					
 				</div><!--/span-->
