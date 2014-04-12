@@ -5,11 +5,12 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: /stylesheets
-  static_dir: stylesheets
+- url: /static
+  static_dir: static
 - url: /gaedatastore
   script: gaedatastore.app
   login: admin
+
 - url: /.*
   script: twittermap.application
 
