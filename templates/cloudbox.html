@@ -8,7 +8,7 @@
 		frequencies['{{w}}'] = {{words[w]}};
 	{% endfor %}
 
-	d3.layout.cloud().size([500, 300])
+	d3.layout.cloud().size([600, 600])
 			.words([{% for w in words%}'{{w}}', {% endfor%}].map(function(d) {
 				return {text: d, size: frequencies[d]};
 			}))
@@ -21,11 +21,11 @@
 			.start();
 
 	function draw(words) {
-		d3.select("body").append("svg")
+		d3.select(".cloudbox").append("svg")
 				.attr("width", 600)
 				.attr("height", 600)
 			.append("g")
-				.attr("transform", "translate(150,150)")
+				.attr("transform", "translate(100, 250)")
 			.selectAll("text")
 				.data(words)
 			.enter().append("text")
