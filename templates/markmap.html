@@ -17,26 +17,32 @@
 // of Bondi Beach in Sydney, Australia
 function initialize() {
   var mapOptions = {
-    zoom: 3,
-    center: new google.maps.LatLng(37, -90)
+    zoom: 5,
+    center: new google.maps.LatLng(37, -122)
   }
   var map = new google.maps.Map(document.getElementById('map-canvas'),
                                 mapOptions);
 
-  var image = 'images/beachflag.png';
-  var myLatLng = new google.maps.LatLng(-33.890542, 151.274856);
+  var image = 'photo.jpg';
+  var myLatLng = new google.maps.LatLng(-37, 151.274856);
+
   var taxiData = [
-    new google.maps.LatLng(37.753837, -122.403172),
+    new google.maps.LatLng(38.753837, -122.403172),
     new google.maps.LatLng(37.752986, -122.403112),
-    new google.maps.LatLng(37.751266, -122.403355)
+    new google.maps.LatLng(39.751266, -122.403355)
   ];
 
+
+
+  for (var i = 0; i < taxiData.length; i++)
+  {
   
-  var beachMarker = new google.maps.Marker({
-      position: myLatLng,
-      map: map,
-      icon: image
-  });
+    var beachMarker = new google.maps.Marker({
+        position: taxiData[i],
+        map: map,
+        icon: image
+    });
+  }
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
