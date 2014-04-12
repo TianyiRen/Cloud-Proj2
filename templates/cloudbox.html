@@ -5,13 +5,11 @@
 	var frequencies = new Object();
 
 	{% for w in words %}
-		frequencies[{{w}}] = {{words[w]}};
-		alert(frequencies[{{w}}])
+		frequencies['{{w}}'] = {{words[w]}};
 	{% endfor %}
 
 	d3.layout.cloud().size([500, 300])
-			.words([
-				{{words}}].map(function(d) {
+			.words([{% for w in words%}'{{w}}', {% endfor%}].map(function(d) {
 				return {text: d, size: frequencies[d]};
 			}))
 			// 10 + Math.random() * 90
