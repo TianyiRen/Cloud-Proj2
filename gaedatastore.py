@@ -1,44 +1,43 @@
-import os, sys, time
-import json
-import logging
+import os, sys, time, json, logging
+from datetime import datetime
 
-from twitter import *
-
-from dbmodel import Twiteet, TwitterUser
-import jinja2
 import webapp2
 
 from google.appengine.api import taskqueue
 from google.appengine.ext import ndb
 
-from auth import auth
+from config import auth, EC2
+from dbmodel import Twiteet, APPStatus
+
+def twitter_time_to_datetime(twittertime):
+	# example: 'Wed Apr 09 03:57:34 +0000 2014'
+	t = time.strptime(twittertime, '%a %b %d %H:%M:%S +0000 %Y')
+	dt = datetime.fromtimestamp(time.mktime(t))
+	return dt
+
+def fetchEC2(datano):
+	import urllib2
+	response = urllib2.urlopen('http://' + EC2 + '/twitter-data' + str(datano) + '.txt')
+	tweets = response.read().strip().split("\n")
+	for tweet in tweets:
+		tweet = tweet.split(',')
+		longitude, latitude, created_at, text = tweet[0], tweet[1], tweet[2], ' '.join(tweet[3:])
+		yield longitude, latitude, twitter_time_to_datetime(created_at), text
 
 class DataStore(webapp2.RequestHandler):
 
 	def get(self):
 		logging.info("DataStore get called")
-		stream = TwitterStream(auth = auth)
-		authorlist = [line.strip() for line in open("authorlist.txt")]
+		status = APPStatus.query().get()
+		if not status:
+			status = APPStatus(datano = 0)
+		datano = status.datano
 
-		# print authorlist
+		for longitude, latitude, created_at, text in fetchEC2(datano):
+			Twiteet(longitude = float(longitude), latitude = float(latitude), created_at = created_at, text = text).put()
+		status.datano += 1
+		status.put()
 
-		while True:
-			logging.info("in the while loop")
-			try:
-				tweet_iter = stream.statuses.filter(**{'track': ','.join(authorlist)})
-				with open("twitter-data.txt", "a") as tweet_data:
-					for tweet in tweet_iter:
-						if tweet and 'lang' in tweet and tweet['lang'] == 'en':
-							tweet_data.write(json.dumps(tweet) + "\n")
-						logging.info("one tweet has arrived!")
-						print "here here"
-						time.sleep(3)
-				logging.info("outside of open")
-			except Exception, e:
-				logging.info("there is exception")
-				print >> sys.stderr, e
-				continue
-		logging.info("out of the while loop")
 		self.response.write("DataStore get called")
 
 

@@ -1,0 +1,1 @@
+appcfg.py download_data --url=http://twittmap-xhcyfz.appspot.com/_ah/remote_api --filename=download.txt

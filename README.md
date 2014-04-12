@@ -3,8 +3,9 @@ Cloud-Proj2 : TwittMap
 
 Instructions
 Assignment 2: TwittMap
-
+url: twittmap-xhcyfz.appspot.com
 Due Date: 4/17/14
+
 
 You need to create a Google App Engine based TwittMap. The closest example I had shown in the class is: http://worldmap.harvard.edu/tweetmap/
 
@@ -45,3 +46,12 @@ GAE Application info:
 Application ID:	twittmap-xhcyfz
 
 access port: 9080
+
+===============================
+useful command
+
+Run a backgroud process[change log.out & log.err]:
+nohup python twitterdata.py > log.out 2> log.err < /dev/null &
+
+copy file to EC2
+scp -i zyf.pem twitterdata.py ec2-user@54.85.51.169:/home/ec2-user/
