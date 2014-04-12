@@ -32,12 +32,11 @@ class MainPage(webapp2.RequestHandler):
         
 
         template_values = {
-            
         }
-
+        words = {'hello' : 40, 'world' : 20, 'this'  : 10, 'is' : 10, 'my' : 10, 'time' : 40}
+        print 'words["my"]:', words['my']
         template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render(template_values))
-
+        self.response.write(template.render(words = words))
 
 # class Guestbook(webapp2.RequestHandler):
 
