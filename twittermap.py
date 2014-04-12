@@ -32,7 +32,7 @@ class MainPage(webapp2.RequestHandler):
         
 
         template_values = {
-                
+            
         }
 
         template = JINJA_ENVIRONMENT.get_template('index.html')
