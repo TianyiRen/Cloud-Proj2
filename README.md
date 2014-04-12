@@ -50,6 +50,9 @@ access port: 9080
 ===============================
 useful command
 
+login to EC2
+ssh -i zyf.pem ec2-user@54.85.51.169
+
 Run a backgroud process[change log.out & log.err]:
 nohup python twitterdata.py > log.out 2> log.err < /dev/null &
 
