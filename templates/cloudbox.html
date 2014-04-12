@@ -6,23 +6,14 @@
 <script>
   var fill = d3.scale.category20();
   var frequencies = new Object();
-  frequencies['Hello'] = 40;
-  frequencies['world'] = 10;
-  frequencies['normally'] = 20;
-  frequencies['you'] = 20;
-  frequencies['want'] = 20;
-  frequencies['more'] = 20;
-  frequencies['words'] = 20;
-  frequencies['than'] = 20;
-  frequencies['this'] = 20;
-  frequencies['food'] = 20;
-  frequencies['hot'] = 20;
-  frequencies['snow'] = 20;
+
+  {% for word in words %}
+  frequencies[{{word}}] = {{frequencies[word]}};
+  {% endfor %}
 
   d3.layout.cloud().size([500, 300])
       .words([
-        "Hello", "world", "normally", "you", "want", "more", "words",
-        "than", "this","food","hot","snow"].map(function(d) {
+        {{words}}].map(function(d) {
         return {text: d, size: frequencies[d]};
       }))
       // 10 + Math.random() * 90
