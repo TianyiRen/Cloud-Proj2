@@ -1,83 +1,94 @@
 <!DOCTYPE html>
 <!-- saved from url=(0041)http://v3.bootcss.com/examples/offcanvas/ -->
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="twitter, map, hot, tweets">
-		<link rel="shortcut icon" href="http://v3.bootcss.com/docs-assets/ico/favicon.png">
-		<link href="http://v3.bootcss.com/dist/css/bootstrap.min.css" rel="stylesheet">
-		<link href="http://v3.bootcss.com/examples/offcanvas/offcanvas.css" rel="stylesheet"> 
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-		  <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
-		  <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
-		<![endif]-->
-		<link href="/static/css/main.css" rel="stylesheet"> 
-		<title>Twitter Map</title>
-	</head>
-	<body style="">
-    	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-      		<div class="container">
-        		<div class="navbar-header">
-          			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            			<span class="sr-only">Toggle navigation</span>
-            			<span class="icon-bar"></span>
-            			<span class="icon-bar"></span>
-            			<span class="icon-bar"></span>
-          			</button>
-          			<a class="navbar-brand" href="#">Project name</a>
-        		</div>
-        		<div class="collapse navbar-collapse">
-          			<ul class="nav navbar-nav">
-            			<li class="active"><a href="#">Home</a></li>
-            			<li><a href="#about">About</a></li>
-            			<li><a href="#contact">Contact</a></li>
-          			</ul>
-        		</div>
-      		</div>
-    	</div>
+<head>
+   
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="http://v3.bootcss.com/docs-assets/ico/favicon.png">
+    <link href="http://v3.bootcss.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://v3.bootcss.com/examples/offcanvas/offcanvas.css" rel="stylesheet">
+    <link href="/static/css/main.css" rel="stylesheet"> 
 
-    	<!-- <div class="container">
-      		<div class="row row-offcanvas row-offcanvas-right">
-<<<<<<< HEAD
-        		<div class="col-xs-10 col-sm-7">
+    <script type="text/javascript">
+        function searchwords(){
+            alert("user is searching words");
+            // this.render('heatmap', {
+            //     keyword = 
+            });
+        }
+    </script>
 
 
-      				<!-- <p>Welcome to TwittMap!</p> -->
-					<!-- <iframe height="600px" width="100%" frameBorder="0" scrolling="no"> -->
-					<div class = "heatmap">
-						{% include 'test.html' %}
-					</div>
-=======
-        		<div class="col-xs-12 col-sm-9"> -->
-      				<p>Welcome to TwittMap!</p>
-					<!-- <iframe height="600px" width="100%" frameBorder="0" scrolling="no"> -->
-					<!-- <div class = "heatmap"> -->
-						{% include 'heatmap.html' %}
-					<!-- </div> -->
->>>>>>> d70a6e45c2ce582ec1f5b567106d195ab3ce696d
-        			<!-- <h1>Hello, world!</h1>
-        			<p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p> -->
-<!-- 
-        		<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          			<div class="list-group">
-            			<a href="heatmap.html" class="list-group-item active">MarkersMap</a>
-						<a href="heatmap.html" class="list-group-item">HeatMap</a>
-					</div>
-					<div class = "cloudbox">
-						{% include 'cloudbox.html' %}
-          			</div>
-]
-      	<hr>
-      	<footer>
-        	<p>© Company 2013</p>
-      	</footer>
-		
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="/static/lib/jquery.min.js"></script>
-		<script src="/static/lib/bootstrap.min.js"></script>
-		<script src="/static/lib/offcanvas.js"></script>
-	</body>
-</html>
+  <body>
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+      <!--     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button> -->
+
+
+          <a class="navbar-brand" href="http://v3.bootcss.com/examples/offcanvas/#">TwittMap</a>
+
+        </div>
+
+        <div class="navbar-collapse collapse">
+          <!-- <form class="navbar-form navbar-right" role="form">    -->
+          <form class="navbar-form navbar-right" role="form">   
+
+            <div class="form-group">
+              <input type="text" placeholder="Key Words" class="form-control">
+            </div>
+<!--             <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+ -->        
+            <button type="submit" class="btn btn-success" onclick = "">Search</button>
+            <button type="submit" class="btn btn-success" onclick = "searchwords();" >Clear</button>
+
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+
+    <div class="map_container">
+
+        <div class="col-xs-3 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+            <a href="./maps/heatmap.html" class="list-group-item active">MarkersMap</a>
+            <a href="./maps/heatmap.html" class="list-group-item">HeatMap</a>
+          </div>
+
+          <div class = "cloudbox_container">
+            <div class = "cloudbox">
+              {% include 'cloudbox.html' %}
+            </div>
+          </div>
+        </div>
+
+        <div class="row row-offcanvas row-offcanvas-right col-xs-9 col-sm-9 heatmap">
+            {% include 'heatmap.html' %}
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/lib/jquery.min.js"></script>
+    <script src="/static/lib/bootstrap.min.js"></script>
+    <script src="/static/lib/offcanvas.js"></script>
+  
+
+</body></html>

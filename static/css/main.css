@@ -1,12 +1,23 @@
+
+html{
+ 		height: 100%;
+        margin: 0px;
+        padding: 0px;
+}
+
 body {
+	height: 100%; 
+	margin: 0px; 
+	padding: 0px;
 	font-family: Verdana, Helvetica, sans-serif;
 	background-color: #DDDDDD;
 }
 
+
 #map-canvas {
 	height: 100%;
 	margin: 0px;
-	padding: 0px
+	padding: 0px;
 }
 
 #panel {
@@ -21,5 +32,38 @@ body {
 }
 
 .cloudbox{
-	background-color: #fff
+	background-color: #fff;
+	height: 100%;
+	margin: 0px;
+    padding: 0px;
 }
+
+.heatmap{
+	height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.container{
+	height: 100%;
+}
+
+.map_container{
+	padding-top: 55px;
+  	padding-right: 5px;
+	height: 90%;
+}
+
+.cloudbox_container {
+	height: 300px;
+	margin: 0px;
+    padding: 0px;
+}
+
+/*.jumbotron {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+*/

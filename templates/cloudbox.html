@@ -8,7 +8,7 @@
 		frequencies['{{w}}'] = {{words[w]}};
 	{% endfor %}
 
-	d3.layout.cloud().size([600, 600])
+	d3.layout.cloud().size([500, 400])
 			.words([{% for w in words%}'{{w}}', {% endfor%}].map(function(d) {
 				return {text: d, size: frequencies[d]};
 			}))
