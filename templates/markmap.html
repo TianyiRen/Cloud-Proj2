@@ -3,6 +3,7 @@
 // This example adds a marker to indicate the position
 // of Bondi Beach in Sydney, Australia
 
+
 var show_markers = false;
 var map;
 var markers = [];
@@ -18,7 +19,8 @@ var points = [
 for (var j = 0; j < points.length; j++) {
   var marker = new google.maps.Marker({
       position: points[j],
-      map: map
+      map: map,
+      icon: image
   });
   markers.push(marker);
 }

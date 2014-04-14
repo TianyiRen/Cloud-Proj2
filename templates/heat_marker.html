@@ -5,6 +5,7 @@
 <script>
 	// Adding 500 Data Points
 	var map, pointarray, heatmap;
+  	var image = '/static/images/small.png';
 
 	var show_markers = false;
 	var map;
@@ -23,7 +24,8 @@
 	for (var j = 0; j < points.length; j++) {
 	  var marker = new google.maps.Marker({
 	      position: points[j],
-	      map: map
+	      map: map,
+	      icon: image
 	  });
 	  markers.push(marker);
 	}
