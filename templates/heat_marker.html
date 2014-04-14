@@ -6,17 +6,34 @@
 	// Adding 500 Data Points
 	var map, pointarray, heatmap;
 
-	var taxiData = [
-		new google.maps.LatLng(37.753837, -122.403172),
-		new google.maps.LatLng(37.752986, -122.403112),
-		new google.maps.LatLng(37.751266, -122.403355)
+	var show_markers = false;
+	var map;
+	var markers = [];
+	var points = [
+
+
+	  // just insert all the coordinates here ~~~~~~~~~~~~~~~
+	    new google.maps.LatLng(38.753837, -122.403172),
+	    new google.maps.LatLng(37.752986, -122.403112),
+	    new google.maps.LatLng(39.751266, -122.403355)
 	];
 
+
+	// generate markers array for markers map
+	for (var j = 0; j < points.length; j++) {
+	  var marker = new google.maps.Marker({
+	      position: points[j],
+	      map: map
+	  });
+	  markers.push(marker);
+	}
+
+	// onload to call
 	function initialize() {
 		// alert("initialize")
 		var mapOptions = {
 			zoom: 3,
-			    minZoom: 2,
+			minZoom: 2,
 			center: new google.maps.LatLng(37, -90),
 			mapTypeId: google.maps.MapTypeId.Map
 		};
@@ -24,21 +41,21 @@
 		map = new google.maps.Map(document.getElementById('map-canvas'),
 				mapOptions);
 
-		var pointArray = new google.maps.MVCArray(taxiData);
+		// generate ponits array for heatmap
+		var pointArray = new google.maps.MVCArray(points);
 
 		heatmap = new google.maps.visualization.HeatmapLayer({
 			data: pointArray
 		});
 
-		heatmap.setMap(map);
-	}
-
-	function togglemarkermap() {
+		// heatmap.setMap(map);
+		setAllMap(map);
 
 	}
 
+	// functions for heatmap
 	function toggleHeatmap() {
-		heatmap.setMap(heatmap.getMap()==map ? null : map);
+		heatmap.setMap(heatmap.getMap() ? null : map);
 	}
 
 	function changeGradient() {
@@ -69,6 +86,24 @@
 		heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
 	}
 
+
+	// functions for markers
+	function setAllMap(map) {
+	  for (var i = 0; i < markers.length; i++) {
+	    markers[i].setMap(map);
+	  }
+	  show_markers = true;
+	}
+
+	function clearMarkers() {
+	  setAllMap(null);
+	}
+
+	function showMarkers() {
+	  setAllMap(map);
+	}
+
+
 	google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
@@ -76,8 +111,10 @@
 
 <div id="map-canvas"></div>
 	<div id="panel">
-      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+      <button onclick="toggleHeatmap()">Show Heatmap</button>
       <button onclick="changeGradient()">Change gradient</button>
+      <button onclick="clearMarkers();">Hide Markers</button>
+      <button onclick="showMarkers();">Show Markers</button>
       <!-- <button onclick="changeRadius()">Change radius</button> -->
       <!-- <button onclick="changeOpacity()">Change opacity</button> -->
     </div>
