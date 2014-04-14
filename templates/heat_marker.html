@@ -5,18 +5,21 @@
 <script>
 	// Adding 500 Data Points
 	var map, pointarray, heatmap;
-  	var image = '/static/images/small.png';
+  	var image = '/static/images/mini.png';
 
 	var show_markers = false;
 	var map;
 	var markers = [];
 	var points = [
 
+	{% for latlng in latlngs %}
+		new google.maps.LatLng({{latlng[0]}}, {{latlng[1]}}),
+	{% endfor %}
+	  // // just insert all the coordinates here ~~~~~~~~~~~~~~~
+	  //   new google.maps.LatLng(38.753837, -122.403172),
+	  //   new google.maps.LatLng(37.752986, -122.403112),
+	  //   new google.maps.LatLng(39.751266, -122.403355)
 
-	  // just insert all the coordinates here ~~~~~~~~~~~~~~~
-	    new google.maps.LatLng(38.753837, -122.403172),
-	    new google.maps.LatLng(37.752986, -122.403112),
-	    new google.maps.LatLng(39.751266, -122.403355)
 	];
 
 
