@@ -5,7 +5,27 @@
 <script>
 	// Adding 500 Data Points
 	var map, pointarray, heatmap;
-  	var image = '/static/images/small.png';
+	var set_gradient = [
+			'rgba(50, 205, 50, 0)',
+			'rgba(50, 205, 50, 1)',
+
+			'rgba(0, 255, 0, 0.5)',
+			'rgba(0, 255, 0, 1)',
+
+			'rgba(127, 255, 0, 0.5)',
+			'rgba(127, 255, 0, 1)',
+
+			'rgba(154, 205, 50, 0.5)',
+			'rgba(154, 205, 50, 1)',
+
+			'rgba(255, 165, 0, 0.5)',
+			'rgba(255, 165, 0, 1)',
+
+			'rgba(255, 0, 0, 1)',
+			'rgba(255, 0, 0, 1)'
+
+	];
+  	var image = '/static/images/mini.png';
 
 	var show_markers = false;
 	var map;
@@ -53,29 +73,41 @@
 		// heatmap.setMap(map);
 		setAllMap(map);
 
+		// set heatmap gradient
+		heatmap.set('gradient', set_gradient);
+
 	}
 
 	// functions for heatmap
 	function toggleHeatmap() {
-		heatmap.setMap(heatmap.getMap() ? null : map);
+		// clear markers
+		setAllMap(null);
+		// show heatmap
+		// heatmap.setMap(heatmap.getMap() ? null : map);
+		heatmap.setMap(map);
+
 	}
 
 	function changeGradient() {
-		var gradient = [
-			'rgba(0, 255, 255, 0)',
-			'rgba(0, 255, 255, 1)',
-			'rgba(0, 191, 255, 1)',
-			'rgba(0, 127, 255, 1)',
-			'rgba(0, 63, 255, 1)',
-			'rgba(0, 0, 255, 1)',
-			'rgba(0, 0, 223, 1)',
-			'rgba(0, 0, 191, 1)',
-			'rgba(0, 0, 159, 1)',
-			'rgba(0, 0, 127, 1)',
-			'rgba(63, 0, 91, 1)',
-			'rgba(127, 0, 63, 1)',
-			'rgba(191, 0, 31, 1)',
+		var newgradient = [
+			'rgba(50, 205, 50, 0)',
+			'rgba(50, 205, 50, 1)',
+
+			'rgba(0, 255, 0, 0.5)',
+			'rgba(0, 255, 0, 1)',
+
+			'rgba(127, 255, 0, 0.5)',
+			'rgba(127, 255, 0, 1)',
+
+			'rgba(154, 205, 50, 0.5)',
+			'rgba(154, 205, 50, 1)',
+
+			'rgba(255, 165, 0, 0.5)',
+			'rgba(255, 165, 0, 1)',
+
+			'rgba(255, 0, 0, 1)',
 			'rgba(255, 0, 0, 1)'
+
 		]
 		heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
 	}
@@ -102,7 +134,11 @@
 	}
 
 	function showMarkers() {
-	  setAllMap(map);
+		//clear heatmap
+		heatmap.setMap(null);
+
+		// show markers
+	  	setAllMap(map);
 	}
 
 
@@ -114,9 +150,10 @@
 <div id="map-canvas"></div>
 	<div id="panel">
       <button onclick="toggleHeatmap()">Show Heatmap</button>
-      <button onclick="changeGradient()">Change gradient</button>
-      <button onclick="clearMarkers();">Hide Markers</button>
+      <!-- <button onclick="changeGradient()">Change gradient</button> -->
+      <!-- <button onclick="clearMarkers();">Hide Markers</button> -->
       <button onclick="showMarkers();">Show Markers</button>
+      <!-- <button onclick="changeGradient()">Change gradient</button> -->
       <!-- <button onclick="changeRadius()">Change radius</button> -->
       <!-- <button onclick="changeOpacity()">Change opacity</button> -->
     </div>
