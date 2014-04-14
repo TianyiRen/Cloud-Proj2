@@ -1,64 +1,35 @@
-import os
-import urllib
+import os, urllib, logging
 
-from google.appengine.ext import ndb
+from google.appengine.api import memcache
 
 import jinja2
 import webapp2
 
+from dbmodel import Twiteet
 
 JINJA_ENVIRONMENT = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), "templates")),
-    extensions=['jinja2.ext.autoescape'],
-    autoescape=True)
+	loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), "templates")),
+	extensions=['jinja2.ext.autoescape'],
+	autoescape=True)
 
 class MainPage(webapp2.RequestHandler):
 
-    def get(self):
-        # guestbook_name = self.request.get('guestbook_name',
-        #                                   DEFAULT_GUESTBOOK_NAME)
-        # greetings_query = Greeting.query(
-        #     ancestor=guestbook_key(guestbook_name)).order(-Greeting.date)
-        # greetings = greetings_query.fetch(10)
+	def get(self):
+		latlngs = memcache.get('latlngs')
+		if latlngs is None:
+			latlngs = [(x.latitude, x.longitude) for x in Twiteet.query().fetch(10000)]
+			memcache.add(key = "latlngs", value = latlngs)
 
-        # if users.get_current_user():
-        #     url = users.create_logout_url(self.request.uri)
-        #     url_linktext = 'Logout'
-        # else:
-        #     url = users.create_login_url(self.request.uri)
-        #     url_linktext = 'Login'
+		logging.info(latlngs)
+		words = {'hello' : 40, 'world' : 20, 'this'  : 10, 'is' : 10, 'my' : 10, 'time' : 40, 'Here': 10, 'whatistheworld' : 20}
+		template = JINJA_ENVIRONMENT.get_template('index.html')
+		self.response.write(template.render(words = words, latlngs = latlngs))
 
-        # collect 100M tweets
-        
-
-        template_values = {
-        }
-        words = {'hello' : 40, 'world' : 20, 'this'  : 10, 'is' : 10, 'my' : 10, 'time' : 40, 'Here': 10, 'whatistheworld' : 20}
-        template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render(words = words))
-
-# class Guestbook(webapp2.RequestHandler):
-
-#     def post(self):
-#         # We set the same parent key on the 'Greeting' to ensure each Greeting
-#         # is in the same entity group. Queries across the single entity group
-#         # will be consistent. However, the write rate to a single entity group
-#         # should be limited to ~1/second.
-#         guestbook_name = self.request.get('guestbook_name',
-#                                           DEFAULT_GUESTBOOK_NAME)
-#         greeting = Greeting(parent=guestbook_key(guestbook_name))
-
-#         if users.get_current_user():
-#             greeting.author = users.get_current_user()
-
-#         greeting.content = self.request.get('content')
-#         greeting.put()
-
-#         query_params = {'guestbook_name': guestbook_name}
-#         self.redirect('/?' + urllib.urlencode(query_params))
-
+	def post(self):
+		logging.info("DataStore get called")
+		raise Exception("non implemented!")
 
 application = webapp2.WSGIApplication([
-    ('/', MainPage)
-    # ('/query', QueryMode),
+	('/', MainPage)
+	# ('/query', QueryMode),
 ], debug=True)
