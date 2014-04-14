@@ -15,10 +15,10 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class MainPage(webapp2.RequestHandler):
 
 	def get(self):
-
-		latlngs = [(x.latitude, x.longitude) for x in Twiteet.query().fetch(10000)]
-
-		memcache.add(key = "latlngs", value = latlngs)
+		latlngs = memcache.get('latlngs')
+		if latlngs is None:
+			latlngs = [(x.latitude, x.longitude) for x in Twiteet.query().fetch(10000)]
+			memcache.add(key = "latlngs", value = latlngs)
 
 		logging.info(latlngs)
 		words = {'hello' : 40, 'world' : 20, 'this'  : 10, 'is' : 10, 'my' : 10, 'time' : 40, 'Here': 10, 'whatistheworld' : 20}

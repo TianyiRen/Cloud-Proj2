@@ -16,3 +16,6 @@ EC2 = config.get('EC2', 'server')
 # from tweepy import OAuthHandler
 # auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 # auth.set_access_token(OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
+
+
+tweetsonheatmap = config.getint('View', 'tweets on heatmap')
