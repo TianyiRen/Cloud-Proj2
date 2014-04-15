@@ -2,7 +2,6 @@
 <!-- saved from url=(0041)http://v3.bootcss.com/examples/offcanvas/ -->
 <html>
 <head>
-<<<<<<< HEAD
    
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -41,35 +40,37 @@
     </script>
 
 
+    <!-- search words -->
+    <script type="text/javascript">
+        function searchwords(){
+        // alert("user is searching words");
+          var searchtext = document.getElementById('searchbox').value.trim();
+          if(searchtext != "")
+          {
+            window.location.href = "/?query=" + encodeURIComponent(searchtext); 
+          }
+          // window.location.assign("/404");
+        }
+    </script>
+
+
   <body>
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
-    <!--       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar">hello</span>
-            <span class="icon-bar">he</span>
-            <span class="icon-bar">loo</span>
-          </button> -->
-
-          <a class="navbar-brand" href="http://v3.bootcss.com/examples/offcanvas/#">TwittMap</a>
+        <a class="navbar-brand" href="http://v3.bootcss.com/examples/offcanvas/#">TwittMap</a>
 
         </div>
 
         <div class="navbar-collapse collapse">
           <!-- <form class="navbar-form navbar-right" role="form">    -->
-          <form class="navbar-form navbar-right" role="form">   
+         <form class="navbar-form navbar-right" role="form">   
 
             <div class="form-group">
-              <input type="text" placeholder="Key Words" class="form-control">
-            </div>
-<!--             <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
+              <input type="text" placeholder="Key Word from Word Cloud" id = "searchbox">
             </div>
 
- -->       
-
-            <button type="submit" class="btn btn-success" onclick = "searchwords();">Search</button>
+            <button type="submit" class="btn btn-success" onclick = "searchwords();return false;">Search</button>
             <button type="submit" class="btn btn-success">Clear</button>
 
           </form>
@@ -108,132 +109,6 @@
                           <p style="font-family:Georgia"><strong>YufeiZhao </strong> 2014/04/14 New York is getting warm and hot!!</p>
 
                           <p style="font-family:Georgia">this is second tweet: New York is getting warm and hot!!New York is getting warm and hot!!New York is getting warm and hot!!</p>
-=======
-	 
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="author" content="">
-
-		<!-- jquery lib -->
-		<link rel="stylesheet" type="text/css" href="static/jqcloud/jqcloud.css" />
-		<script src="/static/lib/jquery.min.js"></script>
-
-
-		<script type="text/javascript" src="static/jqcloud/jqcloud-1.0.4.js"></script>
-
-		<!-- bootstrap lib -->
-		<link rel="shortcut icon" href="http://v3.bootcss.com/docs-assets/ico/favicon.png">
-		<link href="http://v3.bootcss.com/dist/css/bootstrap.min.css" rel="stylesheet">
-		<link href="http://v3.bootcss.com/examples/offcanvas/offcanvas.css" rel="stylesheet">
-		<link href="/static/css/main.css" rel="stylesheet"> 
-
-		<script type="text/javascript">
-				function searchwords(){
-				// alert("user is searching words");
-					var searchtext = document.getElementById('searchbox').value.trim();
-					if(searchtext != "")
-					{
-						window.location.href = "/?query=" + encodeURIComponent(searchtext); 
-					}
-					// window.location.assign("/404");
-				}
-		</script>
-
-		<!-- scrollbar lib-->
-		<link rel="stylesheet" href="/static/scrollbar/tinyscrollbar.css" type="text/css" media="screen"/>
-
-		<script type="text/javascript" src="/static/scrollbar/jquery.tinyscrollbar.js"></script>
-		<script type="text/javascript">
-				$(document).ready(function(){
-						$('#scrollbar1').tinyscrollbar();
-				});
-		</script>
-
-
-	<body>
-		<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-		<!--       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar">hello</span>
-						<span class="icon-bar">he</span>
-						<span class="icon-bar">loo</span>
-					</button> -->
-
-
-					<a class="navbar-brand" href="http://v3.bootcss.com/examples/offcanvas/#">TwittMap</a>
-
-				</div>
-
-				<div class="navbar-collapse collapse">
-					<!-- <form class="navbar-form navbar-right" role="form">    -->
-					<form class="navbar-form navbar-right" role="form">   
-
-						<div class="form-group">
-							<input type="text" placeholder="Key Word from Word Cloud" id = "searchbox">
-						</div>
-
-						<button type="submit" class="btn btn-success" onclick = "searchwords();return false;">Search</button>
-						<button type="submit" class="btn btn-success">Clear</button>
-
-					</form>
-				</div><!--/.navbar-collapse -->
-			</div><!-- /.container -->
-		</div><!-- /.navbar -->
-
-		<div class="map_container">
-
-				<div class="col-xs-4 col-sm-4 sidebar-offcanvas" id="sidebar " role="navigation">
-				<!--   <div class="list-group">
-						<a href="./maps/heatmap.html" class="list-group-item active">MarkersMap</a>
-						<a href="./maps/heatmap.html" class="list-group-item">HeatMap</a>
-					</div>
- -->
-					<div class = "cloudbox" style="width: 100%;">
-								{% include 'jqcloud.html' %}
-					</div>
-
-					<div class = "tweetsbox">
-							<div id="tweetsbox_title" style="width: 100%; height: 22px; border: 1px solid #ccc;">
-									<p style="font-family:Helvetica" class="text-center text-info">Showing tweets results -  Sorted by Newest</p>
-							</div>
-
-
-							<div id="scrollbar1">
-									<div class="scrollbar">
-											<!-- <div class="track"> -->
-												<div class="thumb">
-													<!-- <div class="end">
-													</div> -->
-												</div>
-											<!-- </div> -->
-										</div>
-
-									<div class="viewport">
-											 <div class="overview">
-
-
-													<!-- <table class="table table-condensed">
-																<tbody>
-																			<th>
-																				<p style="font-family:courier"><strong>YufeiZhao </strong> 2014/04/14 New York is getting warm and hot!!</p>
-																			</th>
-																			<th>
-																				<p style="font-family:courier"><strong>YufeiZhao </strong> 2014/04/14 New York is getting warm and hot!!</p>
-																			</th>
-																</tbody>
-													</table> -->
-													<!-- tweets may follow the form below -->
-
-													<!--  <p> <strong>{{Username}}</strong> {{tweet_time}} {{tweet_content}} </p>   -->
-													<p style="font-family:Georgia"><strong>YufeiZhao </strong> 2014/04/14 New York is getting warm and hot!!</p>
-
-													<p style="font-family:Georgia">this is second tweet: New York is getting warm and hot!!New York is getting warm and hot!!New York is getting warm and hot!!</p>
->>>>>>> eeb3b41f57019dbaf9ea105f6d07dc880661d518
 
                           <p style="font-family:Georgia">this is second tweet: New York is getting warm and hot!!New York is getting warm and hot!!New York is getting warm and hot!!</p>
 
@@ -244,42 +119,30 @@
                           <p style="font-family:Georgia">this is second tweet: New York is getting warm and hot!!New York is getting warm and hot!!New York is getting warm and hot!!this is second tweet: New York is getting warm and hot!!New York is getting warm and hot!!New York is getting warm and hot!!this is second tweet: New York is getting warm and hot!!New York is getting warm and hot!!New York is getting warm and hot!!</p>
 
 
-<<<<<<< HEAD
+
+
+
                       </div>
                   </div>
               </div>
 
           </div>
-=======
+
+        </div>
+        <div class="row row-offcanvas row-offcanvas-right col-xs-8 col-sm-8 heatmap">
+            {% include 'heat_marker.html' %}
+        </div>
+
+      </div>
+    </div>
 
 
 
-											</div>
-									</div>
-							</div>
-
-
-						 <!--  <div id="tweets" class = "ui-resizable">
-									<p>first twwet</p>
-							</div> -->
-					</div>
->>>>>>> eeb3b41f57019dbaf9ea105f6d07dc880661d518
-
-				</div>
-				<div class="row row-offcanvas row-offcanvas-right col-xs-8 col-sm-8 heatmap">
-						{% include 'heat_marker.html' %}
-				</div>
-
-			</div>
-		</div>
-
-
-
-		<!-- Bootstrap core JavaScript
-		================================================== -->
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="/static/lib/bootstrap.min.js"></script>
-		<script src="/static/lib/offcanvas.js"></script>
-	
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/lib/bootstrap.min.js"></script>
+    <script src="/static/lib/offcanvas.js"></script>
+  
 
 </body></html>
