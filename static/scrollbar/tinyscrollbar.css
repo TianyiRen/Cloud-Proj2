@@ -23,7 +23,8 @@
 }
 
 #scrollbar1 .scrollbar{ 
-	background: transparent url(../images/bg-scrollbar-track-y.png) no-repeat 0 0; 
+	/*background: transparent url(images/bg-scrollbar-track-y.png) no-repeat 0 0; */
+	background: none;
 	position: relative; 
 	background-position: 0 0; 
 	float: right; 
