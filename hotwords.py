@@ -6,10 +6,13 @@ import webapp2
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
 
-from config import auth, EC2, tweetsonheatmap
+from config import auth, EC2, tweetsonheatmap, numhotwords
 from dbmodel import Twiteet, APPStatus, HotWord
 
 class Hotwords(webapp2.RequestHandler):
+	def scale(self, appearance, maxappearance):
+		return appearance * 15 / maxappearance
+
 	def toticks(self, created_at, timerange_low, unitSeconds):
 		return int((created_at - timerange_low).total_seconds() / unitSeconds)
 
@@ -60,6 +63,12 @@ class Hotwords(webapp2.RequestHandler):
 				stats[word]['appearance'] += 1
 		
 		numTicks = 20
+		
+		hotwords = {}
+		words = sorted([(word, stats[word]['appearance']) for word in stats], key = lambda x : x[1], reverse = True)[:numhotwords]
+		for word in words:
+			hotwords[word[0]] = self.scale(word[1], words[0][1])
+		memcache.set(key = "hotwords", value = hotwords)
 
 		unitSeconds = int((timerange_high - timerange_low).total_seconds() / (numTicks - 1))
 		# print 'unitSeconds:', type(unitSeconds), unitSeconds

@@ -6,7 +6,7 @@ import jinja2
 import webapp2
 
 from dbmodel import Twiteet, HotWord
-from config import tweetsonheatmap
+from config import tweetsonheatmap, numhotwords
 
 JINJA_ENVIRONMENT = jinja2.Environment(
 	loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), "templates")),
@@ -27,7 +27,7 @@ class MainPage(webapp2.RequestHandler):
 		# logging.info(latlngs)
 		hotwords = memcache.get('hotwords')
 		if hotwords is None:
-			words = HotWord.query().order(-HotWord.appearance).fetch(50)
+			words = HotWord.query().order(-HotWord.appearance).fetch(numhotwords)
 
 			hotwords = {}
 			for word in words:

@@ -19,3 +19,4 @@ EC2 = config.get('EC2', 'server')
 
 
 tweetsonheatmap = config.getint('View', 'tweets on heatmap')
+numhotwords = config.getint('View', 'number of hotwords')
