@@ -7,7 +7,7 @@ cron:
 - description: pick hotwords from recent 100 tweets
   url: /hotwords
   schedule: every 60 mins
-# - description: warm up the app by inserting 100 tweets in db
-#   url: /warmup
-#   schedule: every 24 hours
+- description: warm up the app by inserting 100 tweets in db
+  url: /warmup
+  schedule: every 24 hours
 

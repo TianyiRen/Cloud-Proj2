@@ -46,7 +46,11 @@
         // {text: "id vuluptate ut", weight: 1},
         // {text: "mattis", weight: 1},
         // {text: "et nulla", weight: 1},
-        // {text: "Sed", weight: 1}
+
+        // this is a fake word to amplify the size of other word
+        // no link to relevant tweets
+         {text: "", weight: -1}
+
       ];
       $(function() {
         $("#my_favorite_latin_words").jQCloud(word_list);
