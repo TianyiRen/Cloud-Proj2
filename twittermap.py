@@ -19,12 +19,32 @@ class MainPage(webapp2.RequestHandler):
 		return appearance * 15 / maxappearance
 
 	def get(self):
-		latlngs = memcache.get('latlngs')
-		if latlngs is None:
-			latlngs = [(x.latitude, x.longitude) for x in Twiteet.query().fetch(tweetsonheatmap)]
-			memcache.add(key = "latlngs", value = latlngs)
+		keyword = self.request.get("query")
 
-		# logging.info(latlngs)
+		if keyword is not None:
+			latlngs = memcache.get(keyword + "latlngs")
+			tweets = memcache.get(keyword + "tweets")
+			if latlngs is None or tweets is None:
+				record = HotWord.query(HotWord.word == keyword).get()
+				if record:
+					latlngs = [x.split(",") for x in record.latlngs.split(";")]
+					tweets = [x.replace(keyword, "<strong>" + keyword + "</strong>") for x in record.tweets.split(";")]
+				else:
+					latlngs = []
+					tweets = []
+				memcache.add(key = keyword + "latlngs", value = latlngs)
+				memcache.add(key = keyword + "tweets", value = tweets)
+		else:
+			latlngs = memcache.get('latlngs')
+			tweets = []
+			if latlngs is None:
+				latlngs = [(x.latitude, x.longitude) for x in Twiteet.query().fetch(tweetsonheatmap)]
+				memcache.add(key = "latlngs", value = latlngs)
+		
+		logging.info("keyword:" + keyword)
+		logging.info("latlngs:" + str(latlngs))
+		logging.info("tweets:" + str(tweets))
+		
 		hotwords = memcache.get('hotwords')
 		if hotwords is None:
 			words = HotWord.query().order(-HotWord.appearance).fetch(numhotwords)
@@ -37,7 +57,7 @@ class MainPage(webapp2.RequestHandler):
 			# logging.info(word + ":" + str(hotwords[word]))
 			# words = {'hello' : 40, 'world' : 20, 'this'  : 10, 'is' : 10, 'my' : 10, 'time' : 40, 'Here': 10, 'whatistheworld' : 20}
 		template = JINJA_ENVIRONMENT.get_template('index.html')
-		self.response.write(template.render(words = hotwords, latlngs = latlngs))
+		self.response.write(template.render(words = hotwords, latlngs = latlngs, tweets = tweets))
 
 	def post(self):
 		logging.info("DataStore get called")
