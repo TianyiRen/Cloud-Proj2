@@ -16,12 +16,161 @@
 // This example adds a marker to indicate the position
 // of Bondi Beach in Sydney, Australia
 function initialize() {
+
+  var style_Array = [
+      {
+          "featureType": "water",
+          "stylers": [
+              {
+                  "color": "#021019"
+              }
+          ]
+      },
+      {
+          "featureType": "landscape",
+          "stylers": [
+              {
+                  "color": "#08304b"
+              }
+          ]
+      },
+      {
+          "featureType": "poi",
+          "elementType": "geometry",
+          "stylers": [
+              {
+                  "color": "#0c4152"
+              },
+              {
+                  "lightness": 5
+              }
+          ]
+      },
+      {
+          "featureType": "road.highway",
+          "elementType": "geometry.fill",
+          "stylers": [
+              {
+                  "color": "#000000"
+              }
+          ]
+      },
+      {
+          "featureType": "road.highway",
+          "elementType": "geometry.stroke",
+          "stylers": [
+              {
+                  "color": "#0b434f"
+              },
+              {
+                  "lightness": 25
+              }
+          ]
+      },
+      {
+          "featureType": "road.arterial",
+          "elementType": "geometry.fill",
+          "stylers": [
+              {
+                  "color": "#000000"
+              }
+          ]
+      },
+      {
+          "featureType": "road.arterial",
+          "elementType": "geometry.stroke",
+          "stylers": [
+              {
+                  "color": "#0b3d51"
+              },
+              {
+                  "lightness": 16
+              }
+          ]
+      },
+      {
+          "featureType": "road.local",
+          "elementType": "geometry",
+          "stylers": [
+              {
+                  "color": "#000000"
+              }
+          ]
+      },
+      {
+          "elementType": "labels.text.fill",
+          "stylers": [
+              {
+                  "color": "#ffffff"
+              }
+          ]
+      },
+      {
+          "elementType": "labels.text.stroke",
+          "stylers": [
+              {
+                  "color": "#000000"
+              },
+              {
+                  "lightness": 13
+              }
+          ]
+      },
+      {
+          "featureType": "transit",
+          "stylers": [
+              {
+                  "color": "#146474"
+              }
+          ]
+      },
+      {
+          "featureType": "administrative",
+          "elementType": "geometry.fill",
+          "stylers": [
+              {
+                  "color": "#000000"
+              }
+          ]
+      },
+      {
+          "featureType": "administrative",
+          "elementType": "geometry.stroke",
+          "stylers": [
+              {
+                  "color": "#144b53"
+              },
+              {
+                  "lightness": 14
+              },
+              {
+                  "weight": 1.4
+              }
+          ]
+      }
+  ];
+
+  // Create a new StyledMapType object, passing it the array of styles,
+  // as well as the name to be displayed on the map type control.
+  var styledMap = new google.maps.StyledMapType(styles,
+    {name: "map_style"});
+
+
   var mapOptions = {
     zoom: 5,
-    center: new google.maps.LatLng(37, -122)
+    center: new google.maps.LatLng(37, -122),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: style_Array
   }
   var map = new google.maps.Map(document.getElementById('map-canvas'),
                                 mapOptions);
+
+
+  //Associate the styled map with the MapTypeId and set it to display.
+  map.mapTypes.set('map_style', styledMap);
+  map.setMapTypeId('map_style');
+
+
 
   var image = 'mini.png';
   var myLatLng = new google.maps.LatLng(-37, 151.274856);
