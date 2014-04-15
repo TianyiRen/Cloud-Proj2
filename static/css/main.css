@@ -62,6 +62,9 @@ body {
 	height: 90%;
 }
 
+p {
+	font-family:courier
+}
 /*.cloudbox_container {
 	height: 250px;
 	width: 450px;
