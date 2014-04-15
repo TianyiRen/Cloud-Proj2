@@ -10,7 +10,12 @@ handlers:
 - url: /gaedatastore
   script: gaedatastore.app
   login: admin
-
+- url: /hotwords
+  script: hotwords.app
+  login: admin
+- url: /warmup
+  script: warmup.app
+  login: admin
 - url: /.*
   script: twittermap.application
 

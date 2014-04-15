@@ -9,3 +9,10 @@ class Twiteet(ndb.Model):
 
 class APPStatus(ndb.Model):
 	datano = ndb.IntegerProperty()
+
+class HotWord(ndb.Model):
+	word = ndb.StringProperty()
+	latlngs = ndb.TextProperty()
+	tweets = ndb.TextProperty()
+	ticks = ndb.TextProperty()
+	appearance = ndb.IntegerProperty()
