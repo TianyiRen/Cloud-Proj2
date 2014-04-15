@@ -33,7 +33,15 @@ body {
 
 .cloudbox{
 	background-color: #fff;
-	height: 100%;
+	height: 250px;
+	width: 450px;
+	margin: 0px;
+    padding: 0px;
+}
+
+.tweetsbox{
+	background-color: #fff;
+	height: 350px;
 	margin: 0px;
     padding: 0px;
 }
@@ -54,11 +62,13 @@ body {
 	height: 90%;
 }
 
-.cloudbox_container {
-	height: 600px;
+/*.cloudbox_container {
+	height: 250px;
+	width: 450px;
 	margin: 0px;
     padding: 0px;
-}
+}*/
+
 
 /*.jumbotron {
   padding-top: 50px;
