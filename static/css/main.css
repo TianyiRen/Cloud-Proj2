@@ -40,9 +40,9 @@ body {
 }
 
 .tweetsbox{
-	background-color: #fff;
+	background-color: rgb(240,248,255);
 	height: 350px;
-	margin: 0px;
+	margin: 0px; 
     padding: 0px;
 }
 
