@@ -6,6 +6,7 @@ import jinja2
 import webapp2
 
 from dbmodel import Twiteet
+from config import tweetsonheatmap
 
 JINJA_ENVIRONMENT = jinja2.Environment(
 	loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), "templates")),
@@ -17,7 +18,7 @@ class MainPage(webapp2.RequestHandler):
 	def get(self):
 		latlngs = memcache.get('latlngs')
 		if latlngs is None:
-			latlngs = [(x.latitude, x.longitude) for x in Twiteet.query().fetch(10000)]
+			latlngs = [(x.latitude, x.longitude) for x in Twiteet.query().fetch(tweetsonheatmap)]
 			memcache.add(key = "latlngs", value = latlngs)
 
 		logging.info(latlngs)

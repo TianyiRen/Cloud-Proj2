@@ -3,10 +3,10 @@ from datetime import datetime
 
 import webapp2
 
-from google.appengine.api import taskqueue
+from google.appengine.api import memcache
 from google.appengine.ext import ndb
 
-from config import auth, EC2
+from config import auth, EC2, tweetsonheatmap
 from dbmodel import Twiteet, APPStatus
 
 def twitter_time_to_datetime(twittertime):
@@ -37,6 +37,9 @@ class DataStore(webapp2.RequestHandler):
 			Twiteet(longitude = float(longitude), latitude = float(latitude), created_at = created_at, text = text).put()
 		status.datano += 1
 		status.put()
+		
+		latlngs = [(x.latitude, x.longitude) for x in Twiteet.query().fetch(tweetsonheatmap)]
+		memcache.add(key = "latlngs", value = latlngs)
 
 		self.response.write("DataStore get called")
 
