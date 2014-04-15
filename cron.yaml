@@ -1,7 +1,7 @@
 cron:
 - description: store tweet into data store
   url: /gaedatastore
-  schedule: every 60 mins
+  schedule: every 30 mins
   # schedule: every monday 09:00
   # schedule: every 24 hours
 - description: pick hotwords from recent 100 tweets
