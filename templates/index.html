@@ -92,7 +92,7 @@
 
 					<div class = "tweetsbox">
 							<div id="tweetsbox_title" style="width: 100%; height: 22px; border: 1px solid #ccc;">
-									<p style="font-family:Helvetica" class="text-center text-info">Showing tweets results -  Sorted by Newest</p>
+									<p style="font-family:Helvetica" class="text-center text-info">Showing the newest tweets results</p>
 							</div>
 
 
@@ -110,7 +110,7 @@
 											 <div class="overview">
 
 											 	{% for tweet in tweets%}
-											 		<p style="font-family:Georgia">{{tweet}}</p>
+											 		<p style="font-family:Georgia">{{tweet|safe}}</p>
 											 	{% endfor %}
 												<!-- <p style="font-family:Georgia"><strong>YufeiZhao </strong> 2014/04/14 New York is getting warm and hot!!</p>
 

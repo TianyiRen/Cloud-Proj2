@@ -1,9 +1,10 @@
 
     
     <script type="text/javascript">
+        // alert(encodeURIComponent('#9'));
       var word_list = [
         {% for word in words%}
-        {text: "{{word}}", weight: {{words[word]}}},
+        {text: "{{word}}", weight: {{words[word]}}, link: "/?query=" + '{{word|e}}'},
         {% endfor %}
         // {text: "Lorem", weight: 13, link: "https://github.com/DukeLeNoir/jQCloud"},
         // {text: "Ipsum", weight: 10.5, html: {title: "My Title", "class": "custom-class"}, link: {href: "http://jquery.com/", target: "_blank"}},

@@ -28,7 +28,7 @@ class MainPage(webapp2.RequestHandler):
 				record = HotWord.query(HotWord.word == keyword).get()
 				if record:
 					latlngs = [x.split(",") for x in record.latlngs.split(";")]
-					tweets = [x for x in record.tweets.split(";")]
+					tweets = [x.replace(keyword, "<strong>" + keyword + "</strong>") for x in record.tweets.split(";")]
 				else:
 					latlngs = []
 					tweets = []
@@ -41,9 +41,9 @@ class MainPage(webapp2.RequestHandler):
 				latlngs = [(x.latitude, x.longitude) for x in Twiteet.query().fetch(tweetsonheatmap)]
 				memcache.add(key = "latlngs", value = latlngs)
 		
-		logging.info(keyword)
-		logging.info(latlngs)
-		logging.info(tweets)
+		logging.info("keyword:" + keyword)
+		logging.info("latlngs:" + str(latlngs))
+		logging.info("tweets:" + str(tweets))
 		
 		hotwords = memcache.get('hotwords')
 		if hotwords is None:
