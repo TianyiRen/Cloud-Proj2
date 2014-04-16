@@ -36,8 +36,8 @@ class Hotwords(webapp2.RequestHandler):
 			'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 
 			't', 'can', 'will', 'just', 'don', 'should', 'now',
 			])
-		tweets = Twiteet.query().fetch(1000)
-		# tweets = Twiteet.query().fetch(tweetsonheatmap)
+		# tweets = Twiteet.query().fetch(100)
+		tweets = Twiteet.query().fetch(tweetsonheatmap)
 		stats = dict()
 		timerange_low = None
 		timerange_high = None
