@@ -30,7 +30,7 @@ Extra Advanced: +25
 	3. dynamic keyword dictionary from the analysis of twit contents
 
 ===============================
-development reference
+Development Reference
 
 Twitter API links:
 For collecting tweets without query: GET statuses/sample
@@ -48,7 +48,7 @@ Application ID:	twittmap-xhcyfz
 access port: 9080
 
 ===============================
-frequently useful command
+Rrequently Used Command
 
 login to EC2:
 
@@ -63,6 +63,7 @@ copy file to EC2:
 scp -i zyf.pem twitterdata.py ec2-user@54.85.51.169:/home/ec2-user/
 
 =====================================
+Front-End libraries
 
 CloudBox library: jqcloud
 
