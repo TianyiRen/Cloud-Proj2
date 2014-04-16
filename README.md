@@ -30,7 +30,7 @@ Extra Advanced: +25
 	3. dynamic keyword dictionary from the analysis of twit contents
 
 ===============================
-development reference
+Development Reference
 
 Twitter API links:
 For collecting tweets without query: GET statuses/sample
@@ -48,22 +48,31 @@ Application ID:	twittmap-xhcyfz
 access port: 9080
 
 ===============================
-useful command
+Rrequently Used Command
 
-login to EC2
+login to EC2:
+
 ssh -i zyf.pem ec2-user@54.85.51.169
 
 Run a backgroud process[change log.out & log.err]:
+
 nohup python twitterdata.py > log.out 2> log.err < /dev/null &
 
-copy file to EC2
+copy file to EC2:
+
 scp -i zyf.pem twitterdata.py ec2-user@54.85.51.169:/home/ec2-user/
+
+=====================================
+Front-End libraries
 
 CloudBox library: jqcloud
 
 http://primegap.net/2011/03/04/jqcloud-a-jquery-plugin-to-build-neat-word-clouds/
 
-
 ScrollBar library:
 
 http://baijs.com/tinyscrollbar/
+
+LineChart library:
+
+http://www.oesmith.co.uk/morris.js/
