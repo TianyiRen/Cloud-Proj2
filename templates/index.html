@@ -95,26 +95,27 @@
 				</div>
 
 					<div class = "tweetsbox">
-						<div id="tweetsbox_title" style="width: 100%; height: 22px; border: 1px solid #ccc;">
-								<p style="font-family:Helvetica" class="text-center text-info">Showing the newest tweets results</p>
+						<div id="tweetsbox_title" style="width: 100%; height: 30px; border: 1px solid #ccc; margin: 3px 0px 0px">
+								<p style="font-family:Helvetica;padding-left: 2%;font-size:18px;" class="text-info">
+									Showing the newest tweets results
+								</p>
 						</div>
 
+						<div id="scrollbar1">
+							<div class="scrollbar">
+								<div class="thumb"></div>
+							</div>
 
-							<div id="scrollbar1">
-								<div class="scrollbar">
-									<div class="thumb"></div>
-								</div>
+							<div class="viewport">
+								<div class="overview">
 
-								<div class="viewport">
-									<div class="overview">
-
-									 	{% for tweet in tweets%}
-									 		<p style="font-family:Georgia">{{tweet|safe}}</p>
-									 	{% endfor %}
-										
-                      				</div>
+								 	{% for tweet in tweets%}
+								 		<p style="font-family:Georgia">{{tweet|safe}}</p>
+								 	{% endfor %}
+									
                   				</div>
               				</div>
+          				</div>
 
           			</div><!--  tweetsbox ends  -->
 
@@ -124,7 +125,7 @@
         <div class="row row-offcanvas row-offcanvas-right col-xs-8 col-sm-8 heatmap">
             {% include 'heat_marker.html' %}
 
-            <div id="myfirstchart" style="height: 180px; width: 100%;"></div>
+            <div id="linechart" style="height: 35%; width: 100%; background-color: #fff; 	margin: 3px 0px 1px;"></div>
 
         </div>
 

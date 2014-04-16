@@ -45,8 +45,9 @@ body {
     padding: 0px;
 }
 
+
 .heatmap{
-	height: 80%;
+	height: 72%;
     margin: 0px;
     padding: 0px;
 }
@@ -58,12 +59,22 @@ body {
 .map_container{
 	padding-top: 55px;
   	padding-right: 5px;
-	height: 90%;
+	height: 100%;
+
 }
 
+/*.linechart {
+	height: 180px; 
+	width: 100%; 
+	background-color: #fff;
+}
+*/
 p {
 	font-family:Georgia
 }
+
+
+
 /*.cloudbox_container {
 	height: 250px;
 	width: 450px;
