@@ -1,13 +1,13 @@
 /* Tiny Scrollbar */
 #scrollbar1 { 
 	width: 100%; 
-	margin: 2px 10px 0px; 
+	margin: 4px 10px 0px; 
 }
 
 #scrollbar1 .viewport { 
 	/*width: 430px; */
 	width: 90%;
-	height: 310px; 
+	height: 360px; 
 	overflow: hidden; 
 	position: absolute; 
 }
@@ -41,7 +41,7 @@
 
 #scrollbar1 .thumb { 
 	background: transparent url(images/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; 
-	height: 10px; 
+	height: 5px; 
 	width: 10px; 
 	cursor: pointer; 
 	overflow: hidden; 
