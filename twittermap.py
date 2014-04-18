@@ -91,13 +91,11 @@ class MainPage(webapp2.RequestHandler):
 
 			hotwords = {}
 			for word in words:
-				if '#' in word.word or '&' in word.word:
-					continue
 				hotwords[word.word] = self.scale(word.appearance, words[0].appearance)
 			memcache.add(key = "hotwords", value = hotwords)
 
 		# for word in hotwords:
-			# logging.info(word + ":" + str(hotwords[word]))
+			# logging.info(word + ":" + str(hotwords[word]) + "||" + str('#' in word or '&' in word))
 			# words = {'hello' : 40, 'world' : 20, 'this'  : 10, 'is' : 10, 'my' : 10, 'time' : 40, 'Here': 10, 'whatistheworld' : 20}
 
 		template = JINJA_ENVIRONMENT.get_template('index.html')

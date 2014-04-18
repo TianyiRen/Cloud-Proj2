@@ -4,7 +4,7 @@
         // alert(encodeURIComponent('#9'));
       var word_list = [
         {% for word in words%}
-        {text: "{{word}}", weight: {{words[word]}}, link: "/?query=" + '{{word|e}}'},
+        {text: "{{word}}", weight: {{words[word]}}, link: "/?query={{word|safe}}"},
         {% endfor %}
         // {text: "Lorem", weight: 13, link: "https://github.com/DukeLeNoir/jQCloud"},
         // {text: "Ipsum", weight: 10.5, html: {title: "My Title", "class": "custom-class"}, link: {href: "http://jquery.com/", target: "_blank"}},
@@ -50,7 +50,7 @@
 
         // this is a fake word to amplify the size of other word
         // no link to relevant tweets
-         {text: "", weight: -1}
+         {text: "", weight: -1, link: "/"}
 
       ];
       $(function() {

@@ -55,6 +55,7 @@ class DataStore(webapp2.RequestHandler):
 				word = word.lower()
 				if word in string.punctuation or word in stopwords:
 					continue
+				# word = word.replace('#', '').replace('&', '')
 				if word not in stats:
 					stats[word] = dict()
 					stats[word]['latlngs'] = []
