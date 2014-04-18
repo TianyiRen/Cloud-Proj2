@@ -91,7 +91,7 @@ class MainPage(webapp2.RequestHandler):
 
 			hotwords = {}
 			for word in words:
-				if '#' in word or '&' in word:
+				if '#' in word.word or '&' in word.word:
 					continue
 				hotwords[word.word] = self.scale(word.appearance, words[0].appearance)
 			memcache.add(key = "hotwords", value = hotwords)
