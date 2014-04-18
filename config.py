@@ -23,7 +23,8 @@ numhotwords = config.getint('View', 'number of hotwords')
 numticks = config.getint('View', 'number of ticks in timeline')
 
 stopwords = set([
-			'rt', 'today', "didn't", "don't",
+			'rt', 'today', "didn't", "don't", "[pic]", "i'm", "...", "..", "w/",
+			'&amp;',
 			'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 
 			'you', 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 
 			'himself', 'she', 'her', 'hers', 'herself', 'it', 'its', 'itself', 
