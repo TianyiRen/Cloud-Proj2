@@ -43,7 +43,7 @@ class DataStore(webapp2.RequestHandler):
 			longitude, latitude = float(longitude), float(latitude)
 			Twiteet(longitude = longitude, latitude = latitude, created_at = created_at, text = text).put()
 			
-			newlatlngs.append([(latitude, longitude)])
+			newlatlngs.append((latitude, longitude))
 
 
 			if timerange_low is None or created_at < timerange_low:
@@ -74,7 +74,8 @@ class DataStore(webapp2.RequestHandler):
 
 		latlngs = memcache.get('all_latlngs')
 		if latlngs:
-			latlngs = latlngs[len(newlatlngs):] + newlatlngs
+			latlngs = latlngs[: -len(newlatlngs)] + newlatlngs
+			# logging.info("len(latlngs):" + str(len(latlngs)))
 			memcache.set(key = "all_latlngs", value = latlngs)
 
 
