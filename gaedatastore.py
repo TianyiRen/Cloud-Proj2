@@ -53,6 +53,7 @@ class DataStore(webapp2.RequestHandler):
 
 			for word in text.split():
 				word = word.lower()
+				word.replace("(", "").replace(")", "")
 				if word in string.punctuation or word in stopwords:
 					continue
 				# word = word.replace('#', '').replace('&', '')
