@@ -7,8 +7,8 @@
 
  	#sidebar {
  		padding-top: 452px;
-/* 		padding-right: 1px;
- 		padding-left: 1px; */
+ 		padding-right: 1px;
+ 		padding-left: 1px; 
  		display: inline;
 
  	}
@@ -27,8 +27,8 @@
 
 	.cloudbox{
 		background-color: #fff;
-		height: 250px;
-		height: 50%;
+		/*height: 10px;*/
+		height: 40%;
 		width: 100%;
 		margin: 0px;
 /*	    padding: 0px;
