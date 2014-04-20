@@ -8,7 +8,8 @@
  	#sidebar {
  		padding-top: 452px;
 /* 		padding-right: 1px;
-*/ 		display: inline;
+ 		padding-left: 1px; */
+ 		display: inline;
 
  	}
 
@@ -33,14 +34,10 @@
 /*	    padding: 0px;
 */	}
 
-/*	.left-side {
-		padding: 100px 1px 1px;
-
-	}*/
 
 	.tweetsbox{
 		background-color: rgb(240,248,255);
-		height: 200px;
+		/*height: 100px;*/
 		/*height: 100%;*/
 		margin: 0px; 
 	    padding: 0px;
@@ -51,7 +48,6 @@
 		height: 100%;
 	    margin: 0px;
 	    padding: 0px;
-	    /*padding-top: 100px;*/
 	}
 
 	.container{
@@ -60,11 +56,22 @@
 
 	.map_container{
 		padding-top: 100px;
-	  	padding-right: 1px;
-	  	padding-left: 1px;
 		/*height: 100%;*/
 		height: 300px;
 
+	}
+
+	#scrollbar1 .viewport { 
+	width: 90%;
+	height: 200px; 
+	overflow: hidden; 
+	position: relative; 
+	}
+
+	#scrollbar1 { 
+		height: 200px;
+		width: 100%; 
+		margin: 4px 10px 0px; 
 	}
 
 }
