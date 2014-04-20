@@ -40,8 +40,8 @@
 
 	.tweetsbox{
 		background-color: rgb(240,248,255);
-		/*height: 400px;*/
-		height: 100%;
+		height: 200px;
+		/*height: 100%;*/
 		margin: 0px; 
 	    padding: 0px;
 	}
