@@ -9,7 +9,7 @@
 	width: 90%;
 	height: 360px; 
 	overflow: hidden; 
-	position: absolute; 
+	position: relative; 
 }
 
 #scrollbar1 .overview { 
