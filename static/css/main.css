@@ -5,6 +5,10 @@
 		width: 100%;
 	}
 
+	.col-sm-8 {
+		width: 100%;
+	}
+
 	.cloudbox{
 		background-color: #fff;
 		height: 250px;
