@@ -38,6 +38,20 @@ body {
     padding: 0px;
 }
 
+@media screen and (max-width: 480px) {
+	#header {
+		height: auto;
+	}
+
+	h1 {
+		font-size: 24px;
+	}
+
+	#sidebar {
+		display: none;
+	}
+}
+
 .tweetsbox{
 	background-color: rgb(240,248,255);
 	height: 400px;
