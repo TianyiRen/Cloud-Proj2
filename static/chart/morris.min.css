@@ -1,6 +1,7 @@
 .morris-hover
 {
 	position:absolute;z-index:1000;
+	display: hidden;
 }
 
 .morris-hover.morris-default-style {
@@ -18,6 +19,6 @@
 .morris-hover.morris-default-style .morris-hover-row-label{
 	font-weight:bold;
 	margin:0.25em 0;
-	display: none;
+	/*display: none;*/
 }
 .morris-hover.morris-default-style .morris-hover-point{white-space:nowrap;margin:0.1em 0;}
