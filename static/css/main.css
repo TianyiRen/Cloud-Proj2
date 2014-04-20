@@ -5,9 +5,11 @@
 	}
 
  	#sidebar {
+ 		padding-top: 500px;
  		display: inline;
 
  	}
+
 	.col-sm-4 {
 		width: 100%;
 	}
