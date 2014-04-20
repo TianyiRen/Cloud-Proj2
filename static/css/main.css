@@ -1,12 +1,21 @@
 /* mobile support*/
 @media screen and (max-width: 480px) {
 
+
+ 	#sidebar {
+ 		display: relative;
+
+ 	}
 	.col-sm-4 {
 		width: 100%;
 	}
 
 	.col-sm-8 {
 		width: 100%;
+	}
+
+	#panel {
+		display: none;
 	}
 
 	.cloudbox{
