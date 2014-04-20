@@ -63,7 +63,7 @@
 
 	#scrollbar1 .viewport { 
 		width: 90%;
-		height: 400px; 
+		height: 380px; 
 		overflow: hidden; 
 		position: relative; 
 	}
