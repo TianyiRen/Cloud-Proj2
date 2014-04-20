@@ -1,4 +1,5 @@
 /* mobile support*/
+
 @media screen and (max-width: 480px) {
 	.navbar-header {
 		height: 5px;
@@ -6,6 +7,7 @@
 
  	#sidebar {
  		padding-top: 500px;
+ 		padding-left: 1px;
  		display: inline;
 
  	}
@@ -24,18 +26,17 @@
 
 	.cloudbox{
 		background-color: #fff;
-		/*height: 250px;*/
+		height: 250px;
 		height: 50%;
 		width: 100%;
 		margin: 0px;
 	    padding: 0px;
-/*	    padding: 50px 1px 1px;
-*/	}
+	}
 
-	.left-side {
+/*	.left-side {
 		padding: 100px 1px 1px;
 
-	}
+	}*/
 
 	.tweetsbox{
 		background-color: rgb(240,248,255);
