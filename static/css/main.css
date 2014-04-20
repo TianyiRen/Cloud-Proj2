@@ -83,7 +83,8 @@ body {
 	margin-left: 80px;
 	z-index: 5;
 	background-color: #fff;
-	padding: 5px;
+	/*padding: 5px;*/
+	padding: 3%;
 	border: 1px solid #999;
 }
 
