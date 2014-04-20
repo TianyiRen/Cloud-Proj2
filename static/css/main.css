@@ -20,7 +20,8 @@
 
 	.cloudbox{
 		background-color: #fff;
-		height: 250px;
+		/*height: 250px;*/
+		height: 50%;
 		width: 100%;
 		margin: 0px;
 	    padding: 0px;
@@ -37,7 +38,7 @@
 
 
 	.heatmap{
-		height: 72%;
+		height: 100%;
 	    margin: 0px;
 	    padding: 0px;
 	}
