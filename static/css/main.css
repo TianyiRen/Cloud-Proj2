@@ -1,3 +1,77 @@
+/* mobile support*/
+@media screen and (max-width: 480px) {
+	html{
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	}
+
+	body {
+		height: 100%; 
+		margin: 0px; 
+		padding: 0px;
+		font-family: Verdana, Helvetica, sans-serif;
+		background-color: #DDDDDD;
+	}
+
+
+	#map-canvas {
+		height: 100%;
+		margin: 0px;
+		padding: 0px;
+	}
+
+	#panel {
+		position: absolute;
+		top: 5px;
+		left: 50%;
+		margin-left: 80px;
+		z-index: 5;
+		background-color: #fff;
+		padding: 5px;
+		border: 1px solid #999;
+	}
+
+	.cloudbox{
+		background-color: #fff;
+		height: 250px;
+		width: 100%;
+		margin: 0px;
+	    padding: 0px;
+	}
+
+
+	.tweetsbox{
+		background-color: rgb(240,248,255);
+		height: 400px;
+		margin: 0px; 
+	    padding: 0px;
+	}
+
+
+	.heatmap{
+		height: 72%;
+	    margin: 0px;
+	    padding: 0px;
+	}
+
+	.container{
+		height: 100%;
+	}
+
+	.map_container{
+		padding-top: 55px;
+	  	padding-right: 5px;
+		height: 100%;
+
+	}
+
+}
+
+
+
+/* pc web browser*/
+
 html{
 	height: 100%;
 	margin: 0px;
@@ -38,19 +112,6 @@ body {
     padding: 0px;
 }
 
-@media screen and (max-width: 480px) {
-	#header {
-		height: auto;
-	}
-
-	h1 {
-		font-size: 24px;
-	}
-
-	#sidebar {
-		display: none;
-	}
-}
 
 .tweetsbox{
 	background-color: rgb(240,248,255);
