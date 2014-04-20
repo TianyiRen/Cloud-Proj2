@@ -1,25 +1,5 @@
 /* mobile support*/
 @media screen and (max-width: 480px) {
-	html{
-	height: 100%;
-	margin: 0px;
-	padding: 0px;
-	}
-
-	body {
-		height: 100%; 
-		margin: 0px; 
-		padding: 0px;
-		font-family: Verdana, Helvetica, sans-serif;
-		background-color: #DDDDDD;
-	}
-
-
-	#map-canvas {
-		height: 100%;
-		margin: 0px;
-		padding: 0px;
-	}
 
 	#panel {
 		position: absolute;
@@ -30,6 +10,7 @@
 		background-color: #fff;
 		padding: 5px;
 		border: 1px solid #999;
+
 	}
 
 	.cloudbox{
@@ -96,7 +77,8 @@ body {
 
 #panel {
 	position: absolute;
-	top: 5px;
+	/*top: 5px;*/
+	top: 3%;
 	left: 50%;
 	margin-left: 80px;
 	z-index: 5;
