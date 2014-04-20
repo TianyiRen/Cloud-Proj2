@@ -4,13 +4,17 @@
 	.navbar-header {
 		height: 5px;
 	}
-
+/*
 	.navbar-collapse {
 		
-	}
+	}*/
 	
-	.collapse {
-		
+/*	.collapse {
+
+	}*/
+
+	#searchbox{
+		width: 10px;
 	}
 
  	#sidebar {
