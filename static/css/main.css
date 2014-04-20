@@ -84,16 +84,12 @@ body {
 
 #panel {
 	position: absolute;
-	/*top: 5px;*/
 	top: 5px;
 	left: 50%;
-	/*margin-left: 80px;*/
 	margin-left: 80px;
 	z-index: 5;
 	background-color: #fff;
-	/*padding: 5px;*/
 	padding: 5px;
-	/*border: 1px solid #999;*/
 	border: 1px solid #999;
 }
 
