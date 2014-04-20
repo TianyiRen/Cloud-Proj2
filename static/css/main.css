@@ -117,7 +117,8 @@ body {
 .heatmap{
 	height: 72%;
     margin: 0px;
-    padding: 0px;
+    /*padding: 0px;*/
+    padding-top: 50%;
 }
 
 .container{

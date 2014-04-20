@@ -1,7 +1,7 @@
 .morris-hover
 {
 	position:absolute;z-index:1000;
-	display: hidden;
+	/*display: hidden;*/
 }
 
 .morris-hover.morris-default-style {
