@@ -78,14 +78,15 @@ body {
 #panel {
 	position: absolute;
 	/*top: 5px;*/
-	top: 3%;
+	top: 1%;
 	left: 50%;
 	margin-left: 80px;
 	z-index: 5;
 	background-color: #fff;
 	/*padding: 5px;*/
-	padding: 3%;
-	border: 1px solid #999;
+	padding: 1%;
+	/*border: 1px solid #999;*/
+	border: 0.5% solid #999;
 }
 
 .cloudbox{
