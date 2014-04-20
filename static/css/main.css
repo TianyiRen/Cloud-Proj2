@@ -63,19 +63,19 @@
 
 	#scrollbar1 .viewport { 
 		width: 90%;
-		height: 200px; 
+		height: 400px; 
 		overflow: hidden; 
 		position: relative; 
 	}
 
 	#scrollbar1 { 
-		height: 200px;
+		height: 400px;
 		width: 100%; 
 		margin: 4px 10px 0px; 
 	}
 
 	#scrollbar1 .overview { 
-		height: 200px;
+		height: 400px;
 		width: 100%;
 		list-style: none; 
 		position: absolute; 
@@ -83,7 +83,9 @@
 		top: 0; 
 		padding: 0; 
 		margin: 0; 
-}
+	}
+
+
 
 }
 
