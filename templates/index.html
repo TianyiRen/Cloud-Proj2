@@ -23,7 +23,7 @@
 		<script type="text/javascript" src="static/jqcloud/jqcloud-1.0.4.js"></script>
 
 		<!-- bootstrap lib -->
-		<link rel="shortcut icon" href="http://v3.bootcss.com/docs-assets/ico/favicon.png">
+		<link rel="shortcut icon" href="/static/images/finallogo.png">
 		<link href="http://v3.bootcss.com/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link href="http://v3.bootcss.com/examples/offcanvas/offcanvas.css" rel="stylesheet">
 		<link href="/static/css/main.css" rel="stylesheet"> 
@@ -83,16 +83,18 @@
 
 				</div>
 
-				<div class="navbar-collapse collapse">
+				<!-- visible-phone -->
+				<div class="visible-phone">
 					<!-- <form class="navbar-form navbar-right" role="form">    -->
 					<form class="navbar-form navbar-left" role="serach">   
 
 						<div class="form-group">
 							<input type="text" class="inputbox" placeholder="Key Word" id = "searchbox">
+							<button type="submit" class="btn btn-success" onclick = "searchwords();return false;">Search</button>
 						</div>
 
-						<button type="submit" class="btn btn-success" onclick = "searchwords();return false;">Search</button>
-<!-- 						<button type="submit" class="btn btn-success clearbutton">Clear</button>
+<!-- 						<button type="submit" class="btn btn-success" onclick = "searchwords();return false;">Search</button>
+ --><!-- 						<button type="submit" class="btn btn-success clearbutton">Clear</button>
  -->
 					</form>
 				</div>
