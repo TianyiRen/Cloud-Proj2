@@ -52,6 +52,7 @@ class MainPage(webapp2.RequestHandler):
 	def get(self):
 		keyword = self.request.get("query")
 		if keyword != '':
+			keyword = keyword.lower()
 			latlngs = memcache.get(keyword + "latlngs")
 			tweets = memcache.get(keyword + "tweets")
 			ticks = memcache.get(keyword + "ticks")
