@@ -24,7 +24,8 @@ numticks = config.getint('View', 'number of ticks in timeline')
 
 stopwords = set([
 			'rt', 'today', "didn't", "don't", "[pic]", "i'm", "...", "..", "w/",
-			'&amp;', "can't", "@", 
+			'&amp;', "can't", "@", 'get', 'go', 'others', 'one', 'really', 'time', 
+			'still', 'back',
 			'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 
 			'you', 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 
 			'himself', 'she', 'her', 'hers', 'herself', 'it', 'its', 'itself', 
