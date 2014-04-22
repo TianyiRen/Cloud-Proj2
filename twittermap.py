@@ -45,7 +45,7 @@ class MainPage(webapp2.RequestHandler):
 
 		ticks = {}
 		delta = timedelta(seconds = unitSeconds)
-		for i in range(numticks):
+		for i in range(numticks - 1):
 			ticks[timerange_low + timedelta(seconds = i * unitSeconds)] = cnts[i]
 		return ticks
 
@@ -73,7 +73,7 @@ class MainPage(webapp2.RequestHandler):
 			tweets = memcache.get('all_tweets')
 			ticks = memcache.get('all_ticks')
 			if latlngs is None or tweets is None or ticks is None:
-				tweets = Twiteet.query().fetch(tweetsonheatmap)
+				tweets = Twiteet.query().order(-Twiteet.created_at).fetch(tweetsonheatmap)
 				latlngs = [(x.latitude, x.longitude) for x in tweets]
 				ticks = self.created_ats_to_ticks([x.created_at for x in tweets])
 				tweets = [x.text for x in tweets[:100]]
