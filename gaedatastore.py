@@ -52,8 +52,7 @@ class DataStore(webapp2.RequestHandler):
 				timerange_high = created_at
 
 			for word in text.split():
-				word = word.lower()
-				word.replace("(", "").replace(")", "")
+				word = word.lower().replace("(", "").replace(")", "")
 				if word in string.punctuation or word in stopwords:
 					continue
 				# word = word.replace('#', '').replace('&', '')
