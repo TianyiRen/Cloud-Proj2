@@ -53,7 +53,7 @@ class DataStore(webapp2.RequestHandler):
 
 			for word in text.split():
 				word = word.lower().replace("(", "").replace(")", "")
-				if word in string.punctuation or word in stopwords:
+				if word in string.punctuation or word in stopwords or word.startswith("http"):
 					continue
 				# word = word.replace('#', '').replace('&', '')
 				if word not in stats:
