@@ -8,18 +8,12 @@ import webapp2
 
 from dbmodel import Twiteet, HotWord
 from config import tweetsonheatmap, numhotwords, numticks
+from utils import strtodatetime
 
 JINJA_ENVIRONMENT = jinja2.Environment(
 	loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), "templates")),
 	extensions=['jinja2.ext.autoescape'],
 	autoescape=True)
-
-def strtodatetime(timestr):
-	# example: '2014-04-12 01:26:23'
-	t = time.strptime(timestr, '%Y-%m-%d %H:%M:%S')
-	dt = datetime.fromtimestamp(time.mktime(t))
-	return dt
-
 
 class MainPage(webapp2.RequestHandler):
 
@@ -46,7 +40,8 @@ class MainPage(webapp2.RequestHandler):
 		ticks = {}
 		delta = timedelta(seconds = unitSeconds)
 		for i in range(numticks - 1):
-			ticks[timerange_low + timedelta(seconds = i * unitSeconds)] = cnts[i]
+			if cnts[i] > 0:
+				ticks[timerange_low + timedelta(seconds = i * unitSeconds)] = cnts[i]
 		return ticks
 
 	def get(self):
@@ -55,36 +50,36 @@ class MainPage(webapp2.RequestHandler):
 			keyword = keyword.lower()
 			latlngs = memcache.get(keyword + "latlngs")
 			tweets = memcache.get(keyword + "tweets")
-			ticks = memcache.get(keyword + "ticks")
-			if latlngs is None or tweets is None or ticks is None:
+			created_ats = memcache.get(keyword + "creatats")
+			if latlngs is None or tweets is None or created_ats is None:
 				record = HotWord.query(HotWord.word == keyword).get()
 				if record:
 					latlngs = [x.split(",") for x in record.latlngs.split(";")]
 					tweets = [x.replace(keyword, "<strong>" + keyword + "</strong>") for x in record.tweets.split(";")]
-					ticks = self.created_ats_to_ticks([strtodatetime(x) for x in record.created_ats.split(";")])
+					created_ats = [strtodatetime(x) for x in record.created_ats.split(";")]
 				else:
 					latlngs = []
 					tweets = []
 				memcache.add(key = keyword + "latlngs", value = latlngs)
 				memcache.add(key = keyword + "tweets", value = tweets)
-				memcache.add(key = keyword + "ticks", value = ticks)
+				memcache.add(key = keyword + "created_ats", value = created_ats)
 		else:
 			latlngs = memcache.get('all_latlngs')
 			tweets = memcache.get('all_tweets')
-			ticks = memcache.get('all_ticks')
-			if latlngs is None or tweets is None or ticks is None:
+			created_ats = memcache.get('all_created_ats')
+			if latlngs is None or tweets is None or created_ats is None:
 				tweets = Twiteet.query().order(-Twiteet.created_at).fetch(tweetsonheatmap)
 				latlngs = [(x.latitude, x.longitude) for x in tweets]
-				ticks = self.created_ats_to_ticks([x.created_at for x in tweets])
+				created_ats = [x.created_at for x in tweets]
 				tweets = [x.text for x in tweets[:100]]
 				memcache.add(key = "all_latlngs", value = latlngs)
 				memcache.add(key = "all_tweets", value = tweets)
-				memcache.add(key = "all_ticks", value = ticks)
+				memcache.add(key = "all_created_ats", value = created_ats)
 
 		logging.info("keyword:[" + keyword + "]")
 		# logging.info("latlngs:" + str(latlngs))
 		# logging.info("tweets:" + str(tweets))
-		# logging.info("ticks:" + str(ticks))
+		# logging.info("created_ats:" + str(created_ats))
 		
 		hotwords = memcache.get('hotwords')
 		if hotwords is None:
@@ -100,7 +95,7 @@ class MainPage(webapp2.RequestHandler):
 			# words = {'hello' : 40, 'world' : 20, 'this'  : 10, 'is' : 10, 'my' : 10, 'time' : 40, 'Here': 10, 'whatistheworld' : 20}
 
 		template = JINJA_ENVIRONMENT.get_template('index.html')
-		self.response.write(template.render(words = hotwords, latlngs = latlngs, tweets = tweets, ticks = ticks or {}))
+		self.response.write(template.render(words = hotwords, latlngs = latlngs, tweets = tweets, ticks = self.created_ats_to_ticks(created_ats) or {}))
 
 	def post(self):
 		logging.info("DataStore get called")

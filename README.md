@@ -76,3 +76,22 @@ http://baijs.com/tinyscrollbar/
 LineChart library:
 
 http://www.oesmith.co.uk/morris.js/
+
+=====================================
+# Readme for TA
+
+GAE url: http://twittmap-xhcyfz.appspot.com/
+Team members: Yufei Zhao(yz2605), Xiaohu Chen(xc2263)
+
+Dear TAs,
+We have implemented all the functionalities, including advanced and extra advanced. The word cloud on the upper left shows the hottest 50 words in a day. By default, the google map on the right shows geolocation of the latest 10,000 tweets from all over the world while the tweet contents are shown on the lower left. The lower right is a line chart that shown the created time distribution of those 10,000 tweets. This information is updated once a hour.
+
+If you click a word on the word cloud or search a keyword in the search box, the google map, tweets area and line chart are all refreshed to reflect information of that word. For example, the google map will now show the geolocations of the tweets that contain this particular word.
+
+All the searched contents are memcached including hotwords, geolocations etc.
+
+The website is also mobile friedly, as seen in the attached sceenshot. 
+
+Behind the scene, an EC2 server is constantly collecting and parsing tweets using twitter streaming API. A scheduled task in GAE will communicate with the EC2 server once in a hour to get the latest tweets and store into datastore. At the meantime, the related information in memcache (if still valid), for example, the latest 10,0000 tweets geolocations, will be updated so that the no further database query is needed to get the latest information.
+
+

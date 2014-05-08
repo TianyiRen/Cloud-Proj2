@@ -7,6 +7,7 @@ from google.appengine.api import memcache
 
 from config import auth, EC2, tweetsonheatmap, numticks, stopwords, numhotwords
 from dbmodel import Twiteet, APPStatus, HotWord
+from utils import strtodatetime
 
 def twitter_time_to_datetime(twittertime):
 	# example: 'Wed Apr 09 03:57:34 +0000 2014'
@@ -30,10 +31,13 @@ class DataStore(webapp2.RequestHandler):
 
 		status = APPStatus.query().get()
 		if not status:
-			status = APPStatus(datano = 0, timerange_low = datetime.now(), timerange_high = datetime.now())
+			status = APPStatus(datano = 500, timerange_low = datetime.now(), timerange_high = datetime.now())
 		datano = status.datano
 
 		newlatlngs = []
+		newtweets = []
+		newcreatedats = []
+
 		stats = dict()
 
 		timerange_low = status.timerange_low
@@ -44,7 +48,8 @@ class DataStore(webapp2.RequestHandler):
 			Twiteet(longitude = longitude, latitude = latitude, created_at = created_at, text = text).put()
 			
 			newlatlngs.append((latitude, longitude))
-
+			newtweets.append(text)
+			newcreatedats.append(created_at)
 
 			if timerange_low is None or created_at < timerange_low:
 				timerange_low = created_at
@@ -53,8 +58,9 @@ class DataStore(webapp2.RequestHandler):
 
 			for word in text.split():
 				word = word.lower().replace("(", "").replace(")", "")
-				if word in string.punctuation or word in stopwords or word.startswith("http"):
+				if len(word) <= 4 or len(word) > 10 or len(set(word) & set(string.punctuation)) > 0 or word in stopwords or word.startswith("http"):
 					continue
+				# print 'word', word
 				# word = word.replace('#', '').replace('&', '')
 				if word not in stats:
 					stats[word] = dict()
@@ -67,17 +73,28 @@ class DataStore(webapp2.RequestHandler):
 				stats[word]['tweets'].append(text)
 				stats[word]['appearance'] += 1
 
-		status.datano += 1
+		status.datano += 8
 		status.timerange_low = timerange_low
 		status.timerange_high = timerange_high
 		status.put()
 
-		latlngs = memcache.get('all_latlngs')
-		if latlngs:
-			latlngs = latlngs[: -len(newlatlngs)] + newlatlngs
+		all_latlngs = memcache.get('all_latlngs')
+		if all_latlngs:
+			all_latlngs = all_latlngs[: -len(newlatlngs)] + newlatlngs
 			# logging.info("len(latlngs):" + str(len(latlngs)))
-			memcache.set(key = "all_latlngs", value = latlngs)
+			memcache.set(key = "all_latlngs", value = all_latlngs)
 
+		all_tweets = memcache.get('all_tweets')
+		if all_tweets:
+			all_tweets = all_tweets[: -len(newtweets)] + newtweets
+			# logging.info("len(latlngs):" + str(len(latlngs)))
+			memcache.set(key = "all_tweets", value = all_tweets)
+
+		all_created_ats = memcache.get('all_created_ats')
+		if all_created_ats:
+			all_created_ats = all_created_ats[: -len(newcreatedats)] + newcreatedats
+			# logging.info("len(latlngs):" + str(len(latlngs)))
+			memcache.set(key = "all_created_ats", value = all_created_ats)
 
 		for word in stats:
 			record = HotWord.query(HotWord.word == word).get()
@@ -87,9 +104,11 @@ class DataStore(webapp2.RequestHandler):
 				if record.created_ats is None:
 					record.created_ats = ""
 				else:
+					# print record.created_ats.split(";")
+					record.created_ats = ";".join([x for x in record.created_ats.split(";") if x != '' and (status.timerange_high - strtodatetime(x)).days <= 1])
+					record.appearance = len(record.created_ats.split(";"))
 					record.created_ats += ";" 
 				record.created_ats += ';'.join([str(x) for x in stats[word]['created_ats']])
-
 				record.appearance += stats[word]['appearance']
 				stats[word]['appearance'] = record.appearance
 			else:
