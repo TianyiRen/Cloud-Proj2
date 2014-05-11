@@ -56,7 +56,7 @@ class MainPage(webapp2.RequestHandler):
 				if record:
 					latlngs = [x.split(",") for x in record.latlngs.split(";")]
 					tweets = [x.replace(keyword, "<strong>" + keyword + "</strong>") for x in record.tweets.split(";")]
-					created_ats = [strtodatetime(x) for x in record.created_ats.split(";")]
+					created_ats = [strtodatetime(x) for x in record.created_ats.split(";") if x.strip() != ""]
 				else:
 					latlngs = []
 					tweets = []
@@ -76,7 +76,7 @@ class MainPage(webapp2.RequestHandler):
 				memcache.add(key = "all_tweets", value = tweets)
 				memcache.add(key = "all_created_ats", value = created_ats)
 
-		logging.info("keyword:[" + keyword + "]")
+		# logging.info("keyword:[" + keyword + "]")
 		# logging.info("latlngs:" + str(latlngs))
 		# logging.info("tweets:" + str(tweets))
 		# logging.info("created_ats:" + str(created_ats))
@@ -87,11 +87,13 @@ class MainPage(webapp2.RequestHandler):
 
 			hotwords = {}
 			for word in words:
+				if "'" in word.word or '"' in word.word:
+					continue
 				hotwords[word.word] = self.scale(word.appearance, words[0].appearance)
 			memcache.add(key = "hotwords", value = hotwords)
 
 		# for word in hotwords:
-			# logging.info(word + ":" + str(hotwords[word]) + "||" + str('#' in word or '&' in word))
+			# logging.info(word + ":" + str(hotwords[word]))
 			# words = {'hello' : 40, 'world' : 20, 'this'  : 10, 'is' : 10, 'my' : 10, 'time' : 40, 'Here': 10, 'whatistheworld' : 20}
 
 		template = JINJA_ENVIRONMENT.get_template('index.html')
