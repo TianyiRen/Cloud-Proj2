@@ -58,9 +58,9 @@ class DataStore(webapp2.RequestHandler):
 
 			for word in text.split():
 				word = word.lower().replace("(", "").replace(")", "")
-				if len(word) <= 4 or len(word) >= 10 or len(set(word) & set(string.punctuation)) > 0 or word in stopwords or word.startswith("http"):
+				if len(word) < 4 or len(word) > 10 or len(set(word) & set(string.punctuation)) > 0 or word in stopwords or word.startswith("http"):
 					continue
-				# print 'word', word
+				print 'word', word
 				# word = word.replace('#', '').replace('&', '')
 				if word not in stats:
 					stats[word] = dict()
@@ -73,7 +73,7 @@ class DataStore(webapp2.RequestHandler):
 				stats[word]['tweets'].append(text)
 				stats[word]['appearance'] += 1
 
-		status.datano += 1
+		status.datano += 6
 		status.timerange_low = timerange_low
 		status.timerange_high = timerange_high
 		status.put()
