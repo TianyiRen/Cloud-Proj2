@@ -57,9 +57,10 @@ class DataStore(webapp2.RequestHandler):
 				timerange_high = created_at
 
 			for word in text.split():
-				word = word.lower().replace("(", "").replace(")", "")
-				if len(word) < 4 or len(word) > 10 or len(set(word) & set(string.punctuation)) > 0 or word in stopwords or word.startswith("http"):
-					continue
+				word = word.lower()
+				# word = word.lower().replace("(", "").replace(")", "")
+				# if len(word) < 4 or len(word) > 10 or len(set(word) & set(string.punctuation)) > 0 or word in stopwords or word.startswith("http"):
+					# continue
 				print 'word', word
 				# word = word.replace('#', '').replace('&', '')
 				if word not in stats:
@@ -123,6 +124,9 @@ class DataStore(webapp2.RequestHandler):
 		hotwords = memcache.get("hotwords")
 		if hotwords is not None:
 			for word in stats:
+				word = word.lower().replace("(", "").replace(")", "")
+				if len(word) < 4 or len(word) > 10 or len(set(word) & set(string.punctuation)) > 0 or word in stopwords or word.startswith("http"):
+					continue
 				hotwords[word] = stats[word]['appearance']
 
 			newhotwords = {}
